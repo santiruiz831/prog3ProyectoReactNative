@@ -80,9 +80,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: '#28a745',
+        marginTop: 10,
     },
     text:{
-        color: '#fff'
+        color: '#fff',
     } 
 })
 
