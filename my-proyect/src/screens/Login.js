@@ -48,6 +48,8 @@ class Login extends Component {
           </TouchableOpacity>
           <View>{console.log(this.state.email)}</View>
         </View>
+        
+        <Text> El error es: {this.props.errores} </Text>
 
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Registro")}

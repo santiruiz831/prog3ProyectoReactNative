@@ -20,6 +20,7 @@ class MainNavigation extends Component {
         this.state={
             loggedIn: false,
             registerError: '',
+            loginError: '',
         }
     }
     
@@ -38,8 +39,12 @@ class MainNavigation extends Component {
     login(mail, password){
         auth.signInWithEmailAndPassword(mail, password)
             .then(response => console.log(response))
-            .catch(error => console.log(error))
-    }
+            .catch( error => {
+                console.log(error);
+                this.setState({
+                    loginError: error.message
+                })
+            })}
 
     register(email, password){
 
@@ -54,8 +59,13 @@ class MainNavigation extends Component {
                 .then( responseUsers => console.log(responseUsers))
                 .catch(error => console.log(error))
             })
-            .catch(error => console.log(error), this.setState({registerError: error.message}))
-    }
+            .catch( error => {
+                console.log(error);
+                this.setState({
+                    registerError: error.message
+                })
+            })        
+          }
 
     logout(){
         console.log('hola')
@@ -84,15 +94,15 @@ class MainNavigation extends Component {
                     <Stack.Group>
                         <Stack.Screen 
                             name='Login'
-                            component = { Login }
                             options = {{headerShown: false}}
                             initialParams = {{login: (mail, password)=> this.login(mail,password) }}
+                            children = {(navigationProps)=><Login errores={this.state.loginError} {...navigationProps}/>}
                         />
-                        <Stack.Screen 
+                         <Stack.Screen 
                             name='Registro'
                             options = {{headerShown: false}}
-                            initialParams = {{register: (mail, password)=> this.register(mail,password)}}
-                            children = { (navigationProps)=><Register errores={this.state.registerError} {... navigationProps}/>}
+                            initialParams = { {register: (mail, pass)=>this.register(mail, pass)}}
+                            children = {(navigationProps)=><Register errores={this.state.registerError} {...navigationProps}/>}
                         />
 
                     </Stack.Group>

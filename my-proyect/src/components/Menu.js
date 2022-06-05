@@ -11,7 +11,7 @@ import { FontAwesome, Foundation } from '@expo/vector-icons'
 //2Importar las pantallas
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
-import Posts from '../screens/Posts';
+import NewPost from '../screens/NewPost';
 
 
 //3 Guardar la ejecución de createBottomTabNavigator
@@ -48,12 +48,12 @@ class Menu extends Component {
                 }
                 />
                 <Tab.Screen 
-                    name='Posts' 
+                    name='NewPost' 
                     
                     options={
                         { tabBarIcon: () => <FontAwesome name="photo" size={24} color="black" /> }
                     }
-                    children = {()=> <Posts/>}
+                    children = {()=> <NewPost/>}
                     />
                 
             </Tab.Navigator>        
