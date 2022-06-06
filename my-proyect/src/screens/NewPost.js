@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import {auth, db} from '../firebase/config';
+import MyCamera from '../components/myCamera';
 
 
 class NewPost extends Component{
@@ -17,6 +18,8 @@ class NewPost extends Component{
             description:'',
             likes:[],
             comments: [],
+            showCamera: true,
+            url: ''
         }
     }
 
@@ -26,7 +29,8 @@ class NewPost extends Component{
                 owner: auth.currentUser.email,
                 description: this.state.description,
                 likes:[],
-                comments:[]
+                comments:[],
+                url: this.state.url
             })
             .then( response => this.setState({
                 description:'',
@@ -34,33 +38,44 @@ class NewPost extends Component{
             ()=>this.props.navigation.navigate('Home')))
             .catch(error => console.log(error) )
     }
-
+    
+    OnImageUpload (){
+        this.setState({
+            url: url  //le pasamos al estado lo que viene por paramewtros
+        })
+    }
 
     render(){
         return(
-            <View style={styles.container}>
-                <Text style={styles.title}>Nuevo Post</Text>
-                <TextInput 
-                    style={styles.field}
-                    keyboardType='default'
-                    placeholder='description'
-                    onChangeText={text => this.setState({ description: text})}
-                    multiline
-                />
-                <TouchableOpacity style={styles.button} onPress={()=>this.guardarPost()}>
-                    <Text style={styles.buttonText}>Guardar Post</Text>
-                </TouchableOpacity>               
-            </View>
-
-        )
+                <View style={styles.container}> 
+                    {
+                    this.state.showCamera ?
+                        <MyCamera OnImageUpload={ (url)=> this.OnImageUpload (url)} /> /////chequear! 
+                    :
+                        <View style={styles.container}>
+                            <Text style={styles.title}>Nuevo Post</Text>
+                            <TextInput
+                                style={styles.field}
+                                keyboardType='default'
+                                placeholder='description'
+                                onChangeText={text => this.setState({ description: text })}
+                                multiline
+                            />
+                            <TouchableOpacity style={styles.button} onPress={() => this.guardarPost()}>
+                                <Text style={styles.buttonText}>Guardar Post</Text>
+                            </TouchableOpacity>
+                        </View>
+                    }
+                </View>
+        )   
     }
-
 }
 
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal:10,
-        marginTop: 10
+        marginTop: 10,
+        height: '100%'
     },
     title:{
         marginBottom:20
