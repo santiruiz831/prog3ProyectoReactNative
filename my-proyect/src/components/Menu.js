@@ -49,11 +49,11 @@ class Menu extends Component {
                 />
                 <Tab.Screen 
                     name='NewPost' 
-                    
+                    component={ NewPost }
                     options={
                         { tabBarIcon: () => <FontAwesome name="photo" size={24} color="black" /> }
                     }
-                    children = {()=> <NewPost/>}
+                    
                     />
                 
             </Tab.Navigator>        

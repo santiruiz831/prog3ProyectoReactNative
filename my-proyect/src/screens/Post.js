@@ -13,19 +13,24 @@ class Post extends Component{
     constructor(props){
         super(props)
         this.state={
-           cantidadDeLikes:this.props.dataPost.data.likes.length,
+           //cantidadDeLikes:this.props.dataPost.data.likes.length,
+           cantidadDeLikes: 0,
            myLike:false,
+           showCamera: true,
+           url: ''
         }
     }
 
     componentDidMount(){
-        if(this.props.dataPost.data.likes.includes(auth.currentUser.email)){
-            this.setState({
-                myLike: true,
-            })
-        }
+        if (this.props.dataPost.data.likes) {
+            if(this.props.dataPost.data.likes.includes(auth.currentUser.email)){
+                this.setState({
+                    myLike: true,
+                })
+            }
+        } 
+        
     }
-
     like(){
         //Agregar el email del user logueado en el array
         db.collection('posts')
