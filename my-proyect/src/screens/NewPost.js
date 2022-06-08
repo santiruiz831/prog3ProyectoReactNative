@@ -39,9 +39,10 @@ class NewPost extends Component{
             .catch(error => console.log(error) )
     }
     
-    OnImageUpload (){
+    onImageUpload (url){
         this.setState({
-            url: url  //le pasamos al estado lo que viene por paramewtros
+            url: url,  //le pasamos al estado lo que viene por paramewtros
+            showCamera: false,
         })
     }
 
@@ -50,7 +51,7 @@ class NewPost extends Component{
                 <View style={styles.container}> 
                     {
                     this.state.showCamera ?
-                        <MyCamera onImageUpload={url => this.onImageUpload(url)} /> 
+                        <MyCamera onImageUpload={(url) => this.onImageUpload(url)} /> 
                     :
                         <View style={styles.container}>
                             <Text style={styles.title}>Nuevo Post</Text>

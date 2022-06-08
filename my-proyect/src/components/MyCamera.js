@@ -19,12 +19,13 @@ class MyCamera extends Component {
             showCamera: true, 
             url: ''
         }
+        console.log(props);
         this.metodosDeCamara = ''   //se rellena con los metodos de camra del render
     }
 
     componentDidMount(){ //hay que pedir los permisos. si tengo muestro camara y sino texto
         Camera.requestCameraPermissionsAsync()
-            .then( ()=> this.state({ 
+            .then( ()=> this.setState({ 
                     permission:true,
                 })
             )
@@ -52,7 +53,8 @@ class MyCamera extends Component {
                         .then( ()=> {
                             ref.getDownloadURL()
                             .then( url => {
-                                this.props.OnImageUpload(url) //tiene qu venir del padre
+                                console.log(this.props);
+                                this.props.onImageUpload(url) //tiene qu venir del padre
                             })
                         })
                         .catch(error => console.log(error))
