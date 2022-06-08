@@ -50,7 +50,7 @@ class NewPost extends Component{
                 <View style={styles.container}> 
                     {
                     this.state.showCamera ?
-                        <MyCamera OnImageUpload={ (url)=> this.OnImageUpload (url)} /> /////chequear! 
+                        <MyCamera onImageUpload={url => this.onImageUpload(url)} /> 
                     :
                         <View style={styles.container}>
                             <Text style={styles.title}>Nuevo Post</Text>

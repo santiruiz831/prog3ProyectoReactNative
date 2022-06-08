@@ -30,11 +30,11 @@ class MyCamera extends Component {
             )
             .catch (error => console.log(error))
     }
-    takePicture(){  //usamos metodo de la camara para sacar la foto, guarda en url temporal asique necesitamos obtenerla para guardarla en estado. 
+    takePicture() {  //usamos metodo de la camara para sacar la foto, guarda en url temporal asique necesitamos obtenerla para guardarla en estado. //usar un método de la cámara para sacar la foto.abs
         this.metodosDeCamara.takePictureAsync ()
         .then( photo => {
             this.setState ({
-                url: photo.uri,
+                url: photo.uri,  //obtener la url temporal para guardarla en un estado.
                 showCamera: false,
 
             })
@@ -47,7 +47,7 @@ class MyCamera extends Component {
             .then( response => response.blob())
             .then(
                 image =>{
-                    const ref = storage.ref('photos/${Date.now()}.jpg') 
+                    const ref = storage.ref(`photos/${Date.now()}.jpg`);
                     ref.put(image)
                         .then( ()=> {
                             ref.getDownloadURL()
@@ -60,7 +60,7 @@ class MyCamera extends Component {
             )
             .catch (error => console.log (error))
     }
-    eliminatePreview () { //falta
+    eliminatePreview () { //falta hacer! 
 
     }
     render (){
