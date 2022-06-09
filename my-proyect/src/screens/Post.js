@@ -68,6 +68,11 @@ class Post extends Component{
                 <View style={styles.separator}>
                     <Text>Post de: {this.props.dataPost.data.owner}</Text>
                     <Text>Texto del Post: {this.props.dataPost.data.description}</Text>
+                    {/* <Image
+                        style={styles.image}
+                        source={{uri: '' }}
+                        resizeMode = 'contain'
+                    /> */}
                      <Text>Cantidad de likes: {this.state.cantidadDeLikes}</Text>
                     {
                         this.state.myLike ?
