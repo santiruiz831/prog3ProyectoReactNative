@@ -8,21 +8,20 @@ import {
 } from 'react-native';
 
 import {auth, db} from '../firebase/config';
-import MyCamera from '../components/myCamera';
+import MyCamera from './Comments';
 
 
 class NewPost extends Component{
     constructor(props){
         super(props)
         this.state={
-            description:'',
+            description:"",
             likes:[],
-            comments: [],
             showCamera: true,
             url: ''
         }
     }
-
+    
     guardarPost(){
          db.collection('posts').add({
                 createdAt: Date.now(),
@@ -34,9 +33,13 @@ class NewPost extends Component{
             })
             .then( response => this.setState({
                 description:'',
+                photo: "",
+                showCamera: true,
             },
             ()=>this.props.navigation.navigate('Home')))
-            .catch(error => console.log(error) )
+             .catch((error) => {
+                 alert("No se pudo crear tu publicación.");
+             });
     }
     
     onImageUpload (url){
@@ -61,9 +64,10 @@ class NewPost extends Component{
                                 placeholder='description'
                                 onChangeText={text => this.setState({ description: text })}
                                 multiline
+                                value={this.state.description}
                             />
                             <TouchableOpacity style={styles.button} onPress={() => this.guardarPost()}>
-                                <Text style={styles.buttonText}>Guardar Post</Text>
+                                <Text style={styles.buttonText}>Publicar</Text>
                             </TouchableOpacity>
                         </View>
                     }
@@ -81,13 +85,6 @@ const styles = StyleSheet.create({
     title:{
         marginBottom:20
     },
-    field:{
-        borderColor: '#dcdcdc',
-        borderWidth: 1,
-        borderRadius: 2,
-        padding:3,
-        marginBottom:8
-    },
     button: {
         borderRadius: 2,
         padding:3,
@@ -95,6 +92,32 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         color: '#fff'
-    }
-})
+    },
+    container: {
+        overflow: "hidden",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#22223b",
+        color: "#ff9f68",
+    },
+    field: {
+        color: "white",
+        flex: 1,
+        width: "90%",
+        justifyContent: "center",
+        padding: 10,
+        marginTop: 15,
+        borderRadius: 15,
+        backgroundColor: "rgba(0, 0, 0, 0.247)",
+    },
+    image: {
+        marginTop: 15,
+        height: 300,
+        width: "90%",
+        borderRadius: 12,
+    },
+});
+
 export default NewPost;

@@ -62,8 +62,11 @@ class MyCamera extends Component {
             )
             .catch (error => console.log (error))
     }
-    eliminatePreview () { //falta hacer! 
-
+    
+    eliminatePreview() {
+        this.setState({
+            photo: "",
+        });
     }
     render (){
         return(
@@ -91,14 +94,14 @@ class MyCamera extends Component {
                                     resizeMode = 'cover'
                                 />
                             <TouchableOpacity
-                                style={styles.button}
+                                style={styles.buttons}
                                 onPress={() => this.savePicture()}>
-                                <Text> Guardar foto</Text>
+                                <Ionicons name="checkmark-circle-outline" size="50px" color="green" />
                             </TouchableOpacity>       
                             <TouchableOpacity
-                                style={styles.button}
+                                style={styles.buttons}
                                 onPress={() => this.eliminatePreview()}>
-                                <Text> Eliminar </Text>
+                                <Ionicons name="close-circle-outline" size="50px" color="red" />
                             </TouchableOpacity>       
                             </View>
                     :
@@ -123,8 +126,11 @@ const styles = StyleSheet.create ({
     },
     preview: {
         height: '80%'
-    }
-
+    },
+    buttons: {
+        width: "30%",
+        backgroundColor: "#0F00FF",
+    },
 })
 
 export default MyCamera;

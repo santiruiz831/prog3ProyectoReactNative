@@ -2,10 +2,15 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    TextInput,
+    StyleSheet,
     TouchableOpacity,
-    StyleSheet
+    FlatList,
+    TextInput,
 } from 'react-native';
+import { auth, db } from "../firebase/config";
+import firebase from "firebase";
+import { createNativeWrapper } from "react-native-gesture-handler";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 class Comments extends Component{
@@ -14,64 +19,173 @@ class Comments extends Component{
         this.state={
             email: '',
             password: '',
+            comment: ''
         }
     }
-    onSubmit(){
-        console.log(this.state)
-    }
-    
-    render(){
-        return(
 
-            <View style={styles.container}>
-            <TextInput style={styles.input}
-                keyboardType='default'
-                placeholder='comment'
-                onChangeText={text => this.setState({comment: text})}
+   comment (){
+        const posteoActualizar = db.collection("posts").doc(this.props.postId);
+
+        if (this.state.comment == "") {
+            alert("Por favor, escribí un comentario.");
+        } else {
+            posteoActualizar
+                .update({
+                    comments: firebase.firestore.FieldValue.arrayUnion({
+                        id: Date.now(),
+                        email: auth.currentUser.email,
+                        owner: auth.currentUser.displayName,
+                        comment: this.state.comment,
+                    }),
+                })
+                .then(() => {
+                    this.setState({
+                        comment: "",
+                    });
+                });
+        } // else
+    } // onComment
+   
+    
+render() {
+    return (
+        <View style={styles.modalView}>
+            {this.props.comments.length != 0 ? (
+                <FlatList
+                    data={this.props.comments}
+                    keyExtractor={(comment) => comment.id}
+                    renderItem={({ item }) => (
+                        <View style={styles.inline}>
+                            <View style={styles.near}>
+                                <Text style={styles.bold}>{item.owner}</Text>
+                                <Text style={styles.comment}>{item.comment}</Text>
+                            </View>
+                            {item.owner == auth.currentUser.displayName ? (
+                                <TouchableOpacity
+                                    style={styles.closeModal}
+                                    onPress={() => {
+                                        this.props.deleteComment(item.id);
+                                    }}
+                                >
+                                    <Ionicons name="trash" size="15px" color="red" />
+                                </TouchableOpacity>
+                            ) : null}
+                        </View>
+                    )}
+                />
+            ) : (
+                <Text style={styles.comment}>
+                    Aún no hay comentarios. Sé el primero en opinar.
+                </Text>
+            )}
+            <TextInput
+                style={styles.field}
+                keyboardType="default"
+                placeholder="Escribe un comentario..."
+                placeholderTextColor="#d7d5d5"
+                multiline={true}
+                numberOfLines={3}
+                onChangeText={(text) => this.setState({ comment: text })}
+                value={this.state.comment}
             />
-    
-            
-            <TouchableOpacity style={styles.botton} onPress={() => this.onSubmit()}>
-                <Text style={styles.text}>Enviar</Text>
+            <TouchableOpacity
+                style={this.state.comment == "" ? styles.btnDisabled : styles.btn}
+                onPress={() => this.comment()}
+                disabled={this.state.comment == "" ? true : false}
+            >
+                <Text>Comentar</Text>
             </TouchableOpacity>
-            <View>{console.log(this.state.email)}</View>
-            </View>
-        )
-    }
-
-}
+        </View>
+    );
+} //Render
+} // Post
 
 const styles = StyleSheet.create({
-    container:{
-        paddingVertical: 10,
-        marginTop: 20
+    image: {
+        height: 200,
     },
-    input:{
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: 'solid',
-        borderRadius: 6,
-        marginVertical: 10
+    container: {
+        flex: 1,
+        width: "100%",
+        justifyContent: "center",
+        padding: 10,
+        margin: "auto",
+        marginTop: 15,
+        borderRadius: 15,
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        backgroundColor: "rgba(0, 0, 0, 0.247)",
     },
-    botton:{
-        backgroundColor: '#28a745',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
+    inline: {
+        flexWrap: "wrap",
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    near: {
+        flexWrap: "wrap",
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+    },
+    field: {
+        color: "white",
+        flex: 1,
+        width: "100%",
+        justifyContent: "center",
+        padding: 10,
+        marginTop: 15,
+        borderRadius: 15,
+        backgroundColor: "rgba(0, 0, 0, 0.247)",
+    },
+    comment: {
+        maxWidth: 170,
+        padding: 5,
+        color: "white",
+    },
+    bold: {
+        padding: 5,
+        color: "white",
+        fontWeight: "bold",
+    },
+    text: {
+        color: "white",
+        textAlign: "center",
+    },
+    btn: {
+        backgroundColor: "#ffb703",
+        color: "black",
+        textAlign: "center",
+        padding: 7,
+        marginTop: 5,
+        borderRadius: 15,
+    },
+    btnDisabled: {
+        backgroundColor: "#e9c46a",
+        textAlign: "center",
+        padding: 7,
+        marginTop: 5,
+        borderRadius: 15,
+    },
+    closeModal: {
+        alignSelf: "flex-end",
+        padding: 10,
+        marginTop: 2,
+        marginBottom: 10,
         borderRadius: 4,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#28a745',
     },
-    text:{
-        color: '#fff'
-    }
- 
-     
- })
+    modalView: {
+        color: "white",
+        borderRadius: 10,
+        width: "100%",
+    },
+}); //Styles
 
 
 export default Comments;

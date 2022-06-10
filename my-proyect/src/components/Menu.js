@@ -12,7 +12,7 @@ import { FontAwesome, Foundation } from '@expo/vector-icons'
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import NewPost from '../screens/NewPost';
-
+import Search from '../screens/Search';
 
 //3 Guardar la ejecución de createBottomTabNavigator
 const Tab = createBottomTabNavigator();
@@ -54,7 +54,14 @@ class Menu extends Component {
                         { tabBarIcon: () => <FontAwesome name="photo" size={24} color="black" /> }
                     }
                     
-                    />
+                />
+                <Tab.Screen
+                    name='Search'
+                    component={Search}
+                    options={
+                        { tabBarIcon: () => <FontAwesome name="search" size={24} color="black" /> }
+                    }
+                />     
                 
             </Tab.Navigator>        
 
