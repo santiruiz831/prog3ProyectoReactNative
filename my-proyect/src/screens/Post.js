@@ -5,6 +5,7 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
+    Modal,
     Image, 
 } from 'react-native';
 import {auth, db} from '../firebase/config';
@@ -21,8 +22,8 @@ class Post extends Component{
            myLike:false,
            showCamera: true,
            url: '',
-            showModal: false,
-            filteredComments: this.props.dataPost.data.comments,
+           showModal: false,
+           filteredComments: this.props.dataPost.data.comments,
 
         }
     }
@@ -80,14 +81,14 @@ class Post extends Component{
 
 
     deleteComment(deletedCommentId) {
-        let filteredComments = this.props.dataItem.data.comments.filter(
+        let filteredComments = this.props.dataPost.data.comments.filter(
             (element) => element.id != deletedCommentId
         );
         this.setState({
             filteredComments: filteredComments,
         });
 
-        const posteoActualizar = db.collection("posts").doc(this.props.dataItem.id);
+        const posteoActualizar = db.collection("posts").doc(this.props.dataPost.id);
 
         posteoActualizar.update({
             comments: filteredComments,
@@ -137,7 +138,7 @@ class Post extends Component{
                                 color="white"
                             />
                             <Text style={styles.text}>
-                                {this.props.dataItem.data.comments.length}
+                                {this.props.dataPost.data.comments.length}
                             </Text>
                         </TouchableOpacity>
                         <Modal
@@ -147,9 +148,9 @@ class Post extends Component{
                             style={styles.modal}
                         >
                             <Comments
-                                comments={this.props.dataItem.data.comments}
+                                comments={this.props.dataPost.data.comments}
                                 closeModal={() => this.closeModal()}
-                                postId={this.props.dataItem.id}
+                                postId={this.props.dataPost.id}
                                 deleteComment={(deletedCommentId) =>
                                     this.deleteComment(deletedCommentId)
                                 }

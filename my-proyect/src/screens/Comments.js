@@ -50,9 +50,9 @@ class Comments extends Component{
 render() {
     return (
         <View style={styles.modalView}>
-            {this.props.comments.length != 0 ? (
+            {this.props.dataPost.data.comments.length != 0 ? (
                 <FlatList
-                    data={this.props.comments}
+                    data={this.props.dataPost.data.comments}
                     keyExtractor={(comment) => comment.id}
                     renderItem={({ item }) => (
                         <View style={styles.inline}>

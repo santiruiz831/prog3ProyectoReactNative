@@ -48,7 +48,7 @@ class Profile extends Component{
     } //Component
 
     addPostRedirect() {
-        this.props.navigation.navigate("Publicar");
+        this.props.navigation.navigate("NewPost");
     }
 
     showModal() {
@@ -140,7 +140,7 @@ class Profile extends Component{
                                 style={styles.flatlist}
                                 data={this.state.posts}
                                 keyExtractor={(post) => post.id.toString()}
-                                renderItem={({ item }) => <Post dataItem={item} />}
+                                renderItem={({ item }) => <Post dataPost={item} />}
                             />
                         ) : (
                             <View style={styles.other}>
