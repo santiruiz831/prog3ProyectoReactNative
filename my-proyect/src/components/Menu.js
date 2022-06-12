@@ -7,7 +7,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 //Import de íconos
 import { FontAwesome, Foundation } from '@expo/vector-icons'
 
-
 //2Importar las pantallas
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
