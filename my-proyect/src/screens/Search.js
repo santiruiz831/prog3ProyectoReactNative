@@ -49,7 +49,7 @@ class Search extends Component {
     render() {
         // console.log(this.state);
         return (
-            <View>
+            <View style={styles.container}>
                 {/* Si no hay resultados deben mostrar un mensaje al usuario. Puede ser un mensaje único o segmenteado: en caso de que el usuario no exista o si el usuario existe indicar que aún no tiene posteos. */}
                 <Text>Posts del usuario: {this.state.whoIs}</Text>
                 <View style={styles.form}>
@@ -84,13 +84,13 @@ class Search extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        overflow: "hidden",
         flex: 1,
-        padding: 10
+        backgroundColor: "#f2e9e4",
+        color: "#ff9f68",
     },
     form: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         marginHorizontal: 20,
     },
     field: {
@@ -99,16 +99,10 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         padding: 3,
         marginBottom: 8,
-        width: '70%',
         marginBottom: 0,
-        lineHeight: 40,
     },
     button: {
-        borderRadius: 2,
-        padding: 3,
         backgroundColor: 'green',
-        width: '29%',
-        textAlign: 'center',
     },
     buttonText: {
         color: '#fff'
