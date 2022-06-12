@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import {auth, db} from '../firebase/config';
-import MyCamera from './Comments';
+import MyCamera from '../components/MyCamera';
 
 
 class NewPost extends Component{

@@ -9,6 +9,7 @@ import {
 
 import {Camera} from 'expo-camera';
 import {db,storage} from '../firebase/config';
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 class MyCamera extends Component {
 

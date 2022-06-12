@@ -108,11 +108,10 @@ class Post extends Component{
                 <View style={styles.separator}>
 
                     <Text>Post de: {this.props.dataPost.data.owner}</Text>
-                    <Image source ={ 
-                       {
-                        uri: this.props.dataPost.data.url
-                       }
-                    }> 
+                    <Image 
+                    source ={{uri: this.props.dataPost.data.url}} 
+                    style={styles.imagen}
+                    > 
 
                     </Image>
                     <Text>Texto del Post: {this.props.dataPost.data.description}</Text>
@@ -191,6 +190,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         marginBottom: 10,
         paddingHorizontal:20
+    },
+    imagen: {
+       height: 100,
+        width: 200,
     },
     image: {
         width: "100%",
