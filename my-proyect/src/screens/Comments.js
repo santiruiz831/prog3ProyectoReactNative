@@ -23,9 +23,20 @@ class Comments extends Component{
         }
     }
 
+    componentDidMount(){
+        //Obtener todos los comentarios de un posteo para renderizarlos. Hay que usar el id que recibimos por parámetro.
+        db.collection('posts')
+        .doc(this.props.postId)
+        .onSnapshot( doc => {
+                this.setState({
+                    comment:doc.data().comments
+                })
+            }
+        )
+    }
+
    comment (){
         const posteoActualizar = db.collection("posts").doc(this.props.postId);
-
         if (this.state.comment == "") {
             alert("Por favor, escribí un comentario.");
         } else {
@@ -48,11 +59,12 @@ class Comments extends Component{
    
     
 render() {
+    console.log('this.props.comments');
     return (
         <View style={styles.modalView}>
-            {this.props.dataPost.data.comments.length != 0 ? (
+            {this.props.comments.length != 0 ? (
                 <FlatList
-                    data={this.props.dataPost.data.comments}
+                    data={this.props.comments}
                     keyExtractor={(comment) => comment.id}
                     renderItem={({ item }) => (
                         <View style={styles.inline}>
@@ -147,7 +159,7 @@ const styles = StyleSheet.create({
     comment: {
         maxWidth: 170,
         padding: 5,
-        color: "white",
+        color: "black",
     },
     bold: {
         padding: 5,
