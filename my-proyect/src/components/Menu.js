@@ -26,10 +26,8 @@ class Menu extends Component {
         }
     }
 
-
     render(){
         return(
-            //Armar el menú. No se necesita repetir el container.
             <Tab.Navigator>
                 <Tab.Screen 
                     name='Home' 
@@ -41,10 +39,10 @@ class Menu extends Component {
                     />
                 <Tab.Screen 
                 name='Profile' 
-                component={ Profile }
                 options={
                     { tabBarIcon: () => <FontAwesome name="user" size={24} color="black" /> }
                 }
+                children = { (navigationProps)=><Profile logout={() =>this.props.logout()} {... navigationProps}/>}
                 />
                 <Tab.Screen 
                     name='NewPost' 
@@ -60,8 +58,7 @@ class Menu extends Component {
                     options={
                         { tabBarIcon: () => <FontAwesome name="search" size={24} color="black" /> }
                     }
-                />     
-                
+                />       
             </Tab.Navigator>        
 
         )

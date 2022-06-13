@@ -68,7 +68,7 @@ class MainNavigation extends Component {
           }
 
     logout(){
-        console.log('hola')
+        //console.log('hola')
         auth.signOut()
         .then(() => this.setState({loggedIn: false}))
         .catch( error => console.log(error))
@@ -85,9 +85,7 @@ class MainNavigation extends Component {
 
                     <Stack.Screen 
                         name='Menu'
-                        
                         options = {{headerShown: false}}
-                        
                         children = { (navigationProps)=><Menu logout={() => this.logout()} {... navigationProps}/>}
                     />
                     :

@@ -91,7 +91,7 @@ class Profile extends Component{
                                         color="white"
                                     />
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.handleLogout()}>
+                                <TouchableOpacity onPress={() => this.props.logout()}>
                                     <Ionicons
                                         style={styles.icon}
                                         name="log-out-outline"

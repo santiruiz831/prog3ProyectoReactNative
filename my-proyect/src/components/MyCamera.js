@@ -67,6 +67,7 @@ class MyCamera extends Component {
     eliminatePreview() {
         this.setState({
             photo: "",
+            showCamera: true
         });
     }
     render (){
