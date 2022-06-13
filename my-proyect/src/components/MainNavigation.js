@@ -11,7 +11,8 @@ const Stack = createNativeStackNavigator();
 //importar las screens o lo que necesite el menú
 import Login from '../screens/Login';
 import Register from '../screens/Register';
-import Menu from './Menu'
+import Menu from './Menu';
+import Comments from '../screens/Comments';
 
 class MainNavigation extends Component {
 
@@ -83,12 +84,18 @@ class MainNavigation extends Component {
                 <Stack.Navigator>
                     {
                         this.state.loggedIn ?
-
+                        <Stack.Group>
                             <Stack.Screen
                                 name='Menu'
-                                options={{ headerShown: false }}
+                                options={{ headerShown: true }}
                                 children={(navigationProps) => <Menu logout={() => this.logout()} {...navigationProps} />}
                             />
+                            <Stack.Screen 
+                                name='Comments'
+                                component={ Comments }
+                            />
+                            </Stack.Group>
+
                             :
                             <Stack.Group>
                                 <Stack.Screen
