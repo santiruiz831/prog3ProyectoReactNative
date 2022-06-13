@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { auth, db } from '../firebase/config';
 
 //Importar navegaciones
-import {NavigationContainer} from '@react-navigation/native';
-import  { createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Guardar la ejecución de Stack
 const Stack = createNativeStackNavigator();
@@ -15,96 +15,97 @@ import Menu from './Menu'
 
 class MainNavigation extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             loggedIn: false,
             registerError: '',
             loginError: '',
         }
     }
-    
-    componentDidMount(){
 
-        auth.onAuthStateChanged( user => {
+    componentDidMount() {
+
+        auth.onAuthStateChanged(user => {
             console.log(user)
-            if (user) this.setState({loggedIn: true})
-        
+            if (user) this.setState({ loggedIn: true })
+
         })
 
-        
+
     }
 
 
-    login(mail, password){
+    login(mail, password) {
         auth.signInWithEmailAndPassword(mail, password)
             .then(response => console.log(response))
-            .catch( error => {
+            .catch(error => {
                 console.log(error);
                 this.setState({
                     loginError: error.message
                 })
-            })}
+            })
+    }
 
-    register(email, password){
+    register(email, password, username) {
 
-        auth.createUserWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password, username)
             .then(responseRegister => {
                 console.log(responseRegister);
                 db.collection('users').add({
-                    email: mail,
-                    userName: userName,
+                    email: email,
+                    userName: username,
                     createdAt: Date.now()
                 })
-                .then( responseUsers => console.log(responseUsers))
-                .catch(error => console.log(error))
+                    .then(responseUsers => console.log(responseUsers))
+                    .catch(error => console.log(error))
             })
-            .catch( error => {
+            .catch(error => {
                 console.log(error);
                 this.setState({
                     registerError: error.message
                 })
-            })        
-          }
+            })
+    }
 
-    logout(){
+    logout() {
         //console.log('hola')
         auth.signOut()
-        .then(() => this.setState({loggedIn: false}))
-        .catch( error => console.log(error))
+            .then(() => this.setState({ loggedIn: false }))
+            .catch(error => console.log(error))
     }
 
 
-    render(){
+    render() {
         console.log('En el render del menu ' + this.state.registerError)
-        return(
+        return (
             <NavigationContainer>
                 <Stack.Navigator>
-                {
-                    this.state.loggedIn ?
+                    {
+                        this.state.loggedIn ?
 
-                    <Stack.Screen 
-                        name='Menu'
-                        options = {{headerShown: false}}
-                        children = { (navigationProps)=><Menu logout={() => this.logout()} {... navigationProps}/>}
-                    />
-                    :
-                    <Stack.Group>
-                        <Stack.Screen 
-                            name='Login'
-                            options = {{headerShown: false}}
-                            initialParams = {{login: (mail, password)=> this.login(mail,password) }}
-                            children = {(navigationProps)=><Login errores={this.state.loginError} {...navigationProps}/>}
-                        />
-                         <Stack.Screen 
-                            name='Registro'
-                            options = {{headerShown: false}}
-                            initialParams = { {register: (mail, pass)=>this.register(mail, pass)}}
-                            children = {(navigationProps)=><Register errores={this.state.registerError} {...navigationProps}/>}
-                        />
+                            <Stack.Screen
+                                name='Menu'
+                                options={{ headerShown: false }}
+                                children={(navigationProps) => <Menu logout={() => this.logout()} {...navigationProps} />}
+                            />
+                            :
+                            <Stack.Group>
+                                <Stack.Screen
+                                    name='Login'
+                                    options={{ headerShown: false }}
+                                    initialParams={{ login: (mail, password) => this.login(mail, password) }}
+                                    children={(navigationProps) => <Login errores={this.state.loginError} {...navigationProps} />}
+                                />
+                                <Stack.Screen
+                                    name='Registro'
+                                    options={{ headerShown: false }}
+                                    initialParams={{ register: (mail, pass, username) => this.register(mail, pass, username) }}
+                                    children={(navigationProps) => <Register errores={this.state.registerError} {...navigationProps} />}
+                                />
 
-                    </Stack.Group>
-                }
+                            </Stack.Group>
+                    }
                 </Stack.Navigator>
             </NavigationContainer>
         )

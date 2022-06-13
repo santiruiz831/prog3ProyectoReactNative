@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -6,12 +6,12 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native';
-import {auth} from '../firebase/config';
+import { auth } from '../firebase/config';
 
-class Register extends Component{
-    constructor(props){
+class Register extends Component {
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             email: '',
             password: '',
             username: '',
@@ -20,41 +20,41 @@ class Register extends Component{
 
     onSubmit() {
         console.log(this.state);
-      }
+    }
 
-    render(){
-        return(
+    render() {
+        return (
             <View style={styles.container}>
                 <Text style={styles.title}>Registro</Text>
-                <TextInput 
+                <TextInput
                     style={styles.field}
                     keyboardType='default'
                     placeholder='Email'
-                    onChangeText={text => this.setState({ email: text})}
+                    onChangeText={text => this.setState({ email: text })}
                 />
-                <TextInput 
+                <TextInput
                     style={styles.field}
                     keyboardType='default'
                     placeholder='Username'
-                    onChangeText={text => this.setState({ username: text})}
+                    onChangeText={text => this.setState({ username: text })}
                 />
-                <TextInput 
+                <TextInput
                     style={styles.field}
                     keyboardType='default'
                     placeholder='Password'
                     secureTextEntry={true}
-                    onChangeText={text => this.setState({ password: text})}
+                    onChangeText={text => this.setState({ password: text })}
                 />
-                <TouchableOpacity style={styles.botton} onPress={()=>this.props.route.params.register(this.state.email, this.state.password)}>
+                <TouchableOpacity style={styles.botton} onPress={() => this.props.route.params.register(this.state.email, this.state.password, this.state.username)}>
                     <Text style={styles.text}>Registrarme</Text>
-                </TouchableOpacity>  
-                
+                </TouchableOpacity>
+
                 <Text> El error es: {this.props.errores} </Text>
 
-                 <TouchableOpacity style={styles.botton} onPress={ ()=>this.props.navigation.navigate('Login') }>
-                        <Text style={styles.text}>Ya tengo cuenta</Text>
-                 </TouchableOpacity>
-            
+                <TouchableOpacity style={styles.botton} onPress={() => this.props.navigation.navigate('Login')}>
+                    <Text style={styles.text}>Ya tengo cuenta</Text>
+                </TouchableOpacity>
+
             </View>
 
         )
@@ -63,22 +63,22 @@ class Register extends Component{
 }
 
 const styles = StyleSheet.create({
-    container:{
-        paddingHorizontal:10,
+    container: {
+        paddingHorizontal: 10,
         marginTop: 10
     },
-    title:{
-        marginBottom:20
+    title: {
+        marginBottom: 20
     },
-    field:{
+    field: {
         borderColor: '#dcdcdc',
         borderWidth: 1,
         borderRadius: 2,
-        padding:3,
-        marginBottom:8
+        padding: 3,
+        marginBottom: 8
 
     },
-    botton:{
+    botton: {
         backgroundColor: '#28a745',
         paddingHorizontal: 10,
         paddingVertical: 6,
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
         borderColor: '#28a745',
         marginTop: 10,
     },
-    text:{
+    text: {
         color: '#fff',
-    } 
+    }
 })
 
 export default Register;
