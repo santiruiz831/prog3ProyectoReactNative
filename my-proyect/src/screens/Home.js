@@ -38,6 +38,14 @@ class Home extends Component {
 
         
     }
+    filterPost (id) {
+        let filteredPost = this.state.posts.filter(
+            (element) => element.id != id
+        );
+        this.setState({
+            posts: filteredPost,
+        })
+    }
 
     render(){
         console.log(this.state);
@@ -53,7 +61,7 @@ class Home extends Component {
                 data={this.state.posts}
                 style={styles.flat}
                 keyExtractor={post => post.id}
-                renderItem = { ({item}) => <Post dataPost={item} {...this.props} />}
+                renderItem = { ({item}) => <Post dataPost={item} filterPost={(id) => this.filterPost (id)} {...this.props} />}
             />
             :
             <Text>No hay Posteos</Text>

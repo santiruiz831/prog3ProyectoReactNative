@@ -100,7 +100,6 @@ class Profile extends Component{
                                     />
                                 </TouchableOpacity>
                             </View>{" "}
-                            {/* inline */}
                             {this.state.showModal ? (
                                 <>
                                     <View
@@ -136,7 +135,7 @@ class Profile extends Component{
                         {/* header */}
                         {this.state.posts.length > 0 ? (
                             <FlatList
-                                showsHorizontalScrollIndicator={false}
+                                
                                 style={styles.flatlist}
                                 data={this.state.posts}
                                 keyExtractor={(post) => post.id.toString()}
@@ -219,6 +218,7 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign: "center",
         margin: 5,
+        width: 200,
     },
     noPublic: {
         color: "black",
@@ -242,9 +242,12 @@ const styles = StyleSheet.create({
     bold: {
         fontSize: "30",
         fontWeight: "bold",
+        color: "white",
+        width: 100,
     },
     paddingLeft: {
         paddingLeft: "5px",
+        width: 1000,
     },
 });
 

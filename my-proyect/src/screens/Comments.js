@@ -13,7 +13,7 @@ import { createNativeWrapper } from "react-native-gesture-handler";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-class Comments extends Component{
+export default class Comments extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -57,7 +57,10 @@ class Comments extends Component{
         } // else
     } // onComment
    
-    
+    botonHome() {
+        this.props.navigation.navigate("Home");
+    }
+
 render() {
     console.log('this.props.comments');
     return (
@@ -107,10 +110,17 @@ render() {
             >
                 <Text>Comentar</Text>
             </TouchableOpacity>
+            
+            <TouchableOpacity
+            style={styles.btn}
+            onPress={() => this.botonHome()}
+            >
+                Volver a la Home
+            </TouchableOpacity>
         </View>
     );
-} //Render
-} // Post
+} 
+} 
 
 const styles = StyleSheet.create({
     image: {
@@ -197,7 +207,4 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: "100%",
     },
-}); //Styles
-
-
-export default Comments;
+}); 

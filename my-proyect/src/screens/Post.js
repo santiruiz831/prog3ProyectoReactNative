@@ -24,6 +24,7 @@ class Post extends Component{
            url: '',
            showModal: false,
            filteredComments: this.props.dataPost.data.comments,
+           deletedPostId: this.props.dataPost.data.id
 
         }
     }
@@ -77,14 +78,13 @@ class Post extends Component{
         this.setState({
             showModal: true,
         });
-    } //Show modal
+    } 
 
     closeModal() {
         this.setState({
             showModal: false,
         });
-    } //Close modal
-
+    } 
 
     deleteComment(deletedCommentId) {
         let filteredComments = this.props.dataPost.data.comments.filter(
@@ -101,9 +101,12 @@ class Post extends Component{
         });
     }
 
-
+    deletePost (deletedPostId) {
+        const posteoActualizarEliminado = db.collection("posts").doc(this.props.dataPost.id).delete()
+    }
+        
+        
     render(){
-        console.log(this.props.dataPost);
         return(
                 <View style={styles.separator}>
 
@@ -125,6 +128,18 @@ class Post extends Component{
                             <Text>Like</Text>
                         </TouchableOpacity>                
                     }  
+
+                    {this.props.dataPost.data.owner == auth.currentUser.email ? (
+                                <TouchableOpacity
+                                    style={styles.closeModal}
+                                    onPress={() => {
+                                        this.deletePost(this.props.dataPost.data.id);
+                                    }}
+                                >
+                                    <Ionicons name="trash" size="15px" color="red" />
+                                </TouchableOpacity>
+                    ) : null}
+
                 {this.state.showModal ? (
                     <>
                         <TouchableOpacity
@@ -143,6 +158,8 @@ class Post extends Component{
                                 {this.props.dataPost.data.comments.length}
                             </Text>
                         </TouchableOpacity>
+
+
                         <Modal
                             animationType="fade"
                             transparent={false}
@@ -212,6 +229,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-start",
+    },
+    closeModal: {
+        alignSelf: "flex-end",
+        padding: 10,
+        marginTop: 2,
+        marginBottom: 10,
+        borderRadius: 4,
     },
     container: {
         flex: 1,
