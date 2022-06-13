@@ -15,7 +15,8 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.state={
-            posts:[]
+            posts:[],
+            username: ''
         }
     }
     
@@ -34,7 +35,27 @@ class Home extends Component {
                     posts: posts
                 })
             }
-        )
+        );
+        db.collection("users")
+            .where("email", "==", auth.currentUser.email)
+            // .orderBy("createdAt", "desc")
+            .onSnapshot(
+                (docs) => {
+                    let postsAux = [];
+                    docs.forEach((doc) => {
+                        postsAux.push({
+                            id: doc.id,
+                            data: doc.data(),
+                        });
+                    }); // For each
+                    console.log(postsAux)
+                    this.setState({
+                        username: postsAux[0].data.userName,
+                        loader: false,
+                    });
+                   ;
+                }
+            );
 
         
     }
@@ -52,7 +73,7 @@ class Home extends Component {
         return(
             <View style={styles.container}>
                 <Text style={styles.text}>
-                    ¡Hola {auth.currentUser.displayName}!
+                    ¡Hola {this.state.username}!
                 </Text>
             <Text>Posteos</Text>
             {
