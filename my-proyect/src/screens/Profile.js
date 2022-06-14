@@ -72,7 +72,7 @@ class Profile extends Component {
        console.log(this.state.username)
         return (
             <View>
-                <Text> Mi Perfil</Text>
+                <Text style={styles.titulo}> Mi Perfil</Text>
                 <Text>
                     {this.state.username} 
                 </Text>
@@ -153,6 +153,12 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         width: "80%",
     },
+    titulo: {
+        color: "black",
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '600',
+    }
 });
 
 

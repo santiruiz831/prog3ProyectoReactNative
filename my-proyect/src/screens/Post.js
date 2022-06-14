@@ -12,6 +12,7 @@ import { auth, db } from "../firebase/config";
 import firebase from "firebase";
 import Comments from "./Comments";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { Fontisto } from '@expo/vector-icons'; 
 
 class Post extends Component {
   constructor(props) {
@@ -114,22 +115,34 @@ class Post extends Component {
     console.log(this.props.dataPost);
     return (
       <View style={styles.separator}>
-        <Text>Post de: {this.props.dataPost.data.owner}</Text>
+        <Text style={styles.owner}>{this.props.dataPost.data.owner}</Text>
         <Image
           source={{ uri: this.props.dataPost.data.url }}
           style={styles.imagen}
         ></Image>
-        <Text>Texto del Post: {this.props.dataPost.data.description}</Text>
-        <Text>Cantidad de likes: {this.state.cantidadDeLikes}</Text>
         {this.state.myLike ? (
           <TouchableOpacity onPress={() => this.unLike()}>
-            <Text>Quitar Like</Text>
+             <Ionicons
+                  style={styles.heartIcon}
+                  name="heart"
+                  size="20px"
+                  color="red"
+                />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={() => this.like()}>
-            <Text>Like</Text>
+           <Ionicons
+                  style={styles.heartIcon}
+                  name="heart-outline"
+                  size="20px"
+                  color="white"
+                />
           </TouchableOpacity>
         )}
+        <Text>Cantidad de likes: {this.state.cantidadDeLikes}</Text>
+        <Text ><Ionicons name="person-circle-outline" size="20px" color="black" />: {this.props.dataPost.data.description}</Text>
+        
+        
 
         {this.props.dataPost.data.owner == auth.currentUser.email ? (
           <TouchableOpacity
@@ -149,7 +162,7 @@ class Post extends Component {
             })
           }
         >
-          <Text>Ver comentarios</Text>
+          <Fontisto name="commenting" size={24} color="black" />
         </TouchableOpacity>
       </View>
     );
@@ -164,10 +177,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   imagen: {
-    height: 100,
-    width: 200,
-  },
-  image: {
     width: "100%",
     height: 200,
     borderRadius: 12,
@@ -233,6 +242,13 @@ const styles = StyleSheet.create({
   paddingLeft: {
     paddingLeft: "5px",
   },
+  owner: {
+    textAlign: "left",
+    color: "black",
+    fontWeight: "600",
+    fontSize: 15,
+    padding: 5,
+  }
 });
 
 export default Post;
