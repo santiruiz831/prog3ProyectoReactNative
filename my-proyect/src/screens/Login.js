@@ -55,7 +55,7 @@ class Login extends Component {
           onPress={() => this.props.navigation.navigate("Registro")}
           style={styles.cambiar}
         >
-          <Text style={styles.cambio}>No tengo cuenta</Text>
+          <Text style={styles.cambio}> No tengo cuenta </Text>
         </TouchableOpacity>
       </View>
     );
@@ -63,22 +63,23 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  todo: {
-    backgroundColor: "#fdf7ff",
-    height: '100%'
-    
-  },
-  bienve: {
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#40194f',
-    marginTop: 20,
-  },
+    todo: {
+      backgroundColor: "#fdf7ff",
+      height: '100%'
+      
+    },
+    bienve: {
+      textAlign: 'center',
+      fontWeight: '600',
+      marginTop: 20,
+      color: "#40194f",
+      fontSize: 40,
+      backgroundColor: '#cbb9d2',
+    },
     container:{
-        paddingVertical: 10,
-        marginTop: 20,
-        textAlign: 'center',
+      paddingVertical: 10,
+      marginTop: 20,
+      textAlign: 'center',
     },
     input:{
       width: "100%",
@@ -87,25 +88,24 @@ const styles = StyleSheet.create({
       padding: 7,
       marginTop: 5,
       borderRadius: 15,
+
     },
     botton:{
-      
-        backgroundColor: '#28a745',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius: 15,
-        borderWidth: 1,
-        borderStyle: 'solid',
-        borderColor: '#28a745',
-        textAlign: 'center',
+      backgroundColor: "#91D6B4",
+      paddingHorizontal: 10,
+      paddingVertical: 6,
+      textAlign: 'center',
+      borderRadius: 15,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderColor: "#91D6B4",
       padding: 7,
       marginTop: 15,
       borderRadius: 15,
       width: '100%',
     },
     text:{
-        color: '#fff'
+      color: "#40194f"
     }    ,
     error: {
       textAlign: "left",
@@ -117,11 +117,20 @@ const styles = StyleSheet.create({
     cambiar: {
       backgroundColor: '#cbb9d2',
       height: 50,
-      width: 100,
-  },
-  cambio: {
-    color: '#40194f'
-}
+      color: "white",
+      textAlign: "center",
+      padding: 7,
+      marginTop: 5,
+      borderRadius: 15,
+      width: "100%",
+    },
+    cambio: {
+      color: "#40194f",
+      width: '100%',
+      textAlign: "center",
+      marginTop: 8,
+      
+    },
  })
 
 export default Login;

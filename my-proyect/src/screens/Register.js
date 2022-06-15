@@ -70,35 +70,35 @@ const styles = StyleSheet.create({
     },
     title: {
         textAlign: 'center',
-        fontSize: 20,
         fontWeight: '600',
-        color: '#40194f',
         marginTop: 20,
-        marginBottom: 20,
+        color: "#40194f",
+        fontSize: 40,
+        backgroundColor: '#cbb9d2',
     },
     field: {
         width: "100%",
-        backgroundColor: "#cbb9d2",
         textAlign: 'center',
         padding: 7,
         marginTop: 5,
         borderRadius: 15,
-
+        backgroundColor: "#E7F6FF", 
+        color: "black"
     },
+
     botton: {
-        backgroundColor: '#28a745',
+        backgroundColor: "#91D6B4",
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
-        borderRadius: 15,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: '#28a745',
+        borderColor: "#91D6B4",
         textAlign: 'center',
-      padding: 7,
-      marginTop: 15,
-      borderRadius: 15,
-      width: '100%',
+        padding: 7,
+        marginTop: 15,
+        borderRadius: 15,
+        width: '100%',
     },
     text: {
         color: '#fff',
@@ -110,14 +110,24 @@ const styles = StyleSheet.create({
         fontSize: 20,
         padding: 5,
       },
-      cambiar: {
-          backgroundColor: '#cbb9d2',
-          height: 50,
-      width: 100,
-      },
-      cambio: {
-          color: '#40194f'
-      }
+    cambiar: {
+        backgroundColor: '#cbb9d2',
+        height: 50,
+        color: "white",
+        textAlign: "center",
+        padding: 7,
+        marginTop: 5,
+        borderRadius: 15,
+        width: "100%",
+    },
+    cambio: {
+        color: "#40194f",
+        width: '100%',
+        textAlign: "center",
+        marginTop: 8,
+
+    },
+      
 })
 
 export default Register;
