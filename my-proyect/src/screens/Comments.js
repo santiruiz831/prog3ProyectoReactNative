@@ -34,6 +34,9 @@ class Comments extends Component{
 
     //Agregar comentario tiene que agregar un comentario dentro de un posteo. Puntualmente dentro de un array de comentarios.
     agregarComentarios(){
+        if (this.state.commentText == '' ) {
+            return 
+        } else {
         //actualizar una colleción.
         db.collection('posts')
         .doc(this.props.route.params.post.id) //Cual es el posteo en donde voy a poner un nuevo comentario. Puedo usar route?
@@ -50,6 +53,7 @@ class Comments extends Component{
             })
         })
         .catch(error => console.log(error));
+        }
     }
 
     render(){
@@ -59,7 +63,9 @@ class Comments extends Component{
                     <Text> Comentarios</Text>
                     {/* Renderizar la lista de comentarios del posteo */}
                    
-                    
+                    {this.state.comments.length == 0 ?
+                    <Text>Aun no hay comentarios. Se el primero en comentar</Text>
+                    :
                     <FlatList 
                         data={this.state.comments}
                         keyExtractor={ posts => posts.id}
@@ -67,6 +73,8 @@ class Comments extends Component{
                         
                         <Text>{item.owner}: {item.text}</Text> }
                     />
+                    }
+                    
                  
                     {/* Un formulario para cargar un comentario */}
                     <TextInput 
@@ -75,7 +83,8 @@ class Comments extends Component{
                     placeholder='Agregar un comentario'
                     onChangeText={text => this.setState({ commentText: text})}
                     value={this.state.commentText}
-                />
+                    />
+
                 <TouchableOpacity style={styles.button} onPress={()=>this.agregarComentarios()}>
                     <Text style={ styles.buttonText}>Comentar</Text>
                 </TouchableOpacity>   

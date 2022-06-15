@@ -74,14 +74,19 @@ class Search extends Component {
                         </TouchableOpacity>
                     </Text>
                 </View>
-                <FlatList
+                {this.state.posts.length != 0 ?
+                    <FlatList
                 style={styles.posts}
                     data={this.state.posts}
                     keyExtractor={post => post.id}
                     renderItem={({ item }) => <Post dataPost={item}
                         {...this.props} />}
                 />
-
+                    :
+                    <Text>Este usuario no tiene Posteos</Text>
+                
+                }
+                
             </View>
 
         )
@@ -90,7 +95,7 @@ class Search extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        overflow: "scroll",
+ 
         flex: 1,
         backgroundColor: "#616161",
         color: "#ff9f68",

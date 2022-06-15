@@ -71,7 +71,7 @@ class Profile extends Component {
     render() {
        console.log(this.state.username)
         return (
-            <View>
+            <View style={styles.contFlat}>
                 <Text style={styles.titulo}> Mi Perfil</Text>
                 <Text>
                     {this.state.username} 
@@ -93,10 +93,9 @@ class Profile extends Component {
                 </Text>
                 {this.state.posts.length > 0 ? (
                     <FlatList
-                        style={styles.flatlist}
                         data={this.state.posts}
                         keyExtractor={(post) => post.id.toString()}
-                        renderItem={({ item }) => <Post dataPost={item} />}
+                        renderItem={({ item }) => <Post dataPost={item} {...this.props}/>}
                     />
                 ) : (
                     <View style={styles.noFlatlist}>
@@ -122,7 +121,6 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
     container: {
-       overflow: "scroll",
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
@@ -130,14 +128,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#f2e9e4",
         color: "#ff9f68",
     },
-    flatlist: {
-        overflow: "scroll",
-        width: "100%",
-        flex: 9,
-        flexDirection: "column",
-    },
     noFlatlist: {
-       overflow: "scroll",
         width: "100%",
         flex: 9,
         flexDirection: "column",
@@ -158,6 +149,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontWeight: '600',
+    },
+    contFlat: {
+        flex: 1,
     }
 });
 

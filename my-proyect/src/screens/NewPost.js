@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     container: {
-        overflow: "scroll",
+  
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
