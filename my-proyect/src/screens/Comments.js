@@ -16,7 +16,7 @@ class Comments extends Component{
         super(props)
         this.state={
             comments:this.props.route.params.post.data.comments,
-            commentText:''
+            commentText:'',
         }
     }
 
@@ -58,11 +58,16 @@ class Comments extends Component{
                 <View>
                     <Text> Comentarios</Text>
                     {/* Renderizar la lista de comentarios del posteo */}
+                   
+                    
                     <FlatList 
                         data={this.state.comments}
                         keyExtractor={ posts => posts.id}
-                        renderItem = { ({item}) => <Text>{item.text}</Text> }
+                        renderItem = { ({item}) => 
+                        
+                        <Text>{item.owner}: {item.text}</Text> }
                     />
+                 
                     {/* Un formulario para cargar un comentario */}
                     <TextInput 
                     style={styles.field}

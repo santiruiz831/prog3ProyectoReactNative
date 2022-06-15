@@ -117,21 +117,24 @@ class MyCamera extends Component {
 const styles = StyleSheet.create ({
     cameraBody: {
         height: '80%',
+        width: '60%'
     },
     button: {
         height: '20%',
-        borderColor: '#ccc',
+        borderColor: 'pink',
         borderWidth: 1,
         padding: 5,
         borderRadius: 4,
         marginTop: 20,
+        backgroundColor: "pink",
     },
     preview: {
-        height: '80%'
+        height: '100%',
+        width: '90%'
     },
     buttons: {
-        width: "30%",
-        backgroundColor: "#0F00FF",
+        width: "60%",
+        
     },
 })
 

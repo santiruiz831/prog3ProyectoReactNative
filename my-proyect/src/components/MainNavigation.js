@@ -87,7 +87,7 @@ class MainNavigation extends Component {
                         <Stack.Group>
                             <Stack.Screen
                                 name='Menu'
-                                options={{ headerShown: true }}
+                                options={{ headerShown: false }}
                                 children={(navigationProps) => <Menu logout={() => this.logout()} {...navigationProps} />}
                             />
                             <Stack.Screen 

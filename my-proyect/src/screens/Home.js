@@ -72,10 +72,11 @@ class Home extends Component {
         console.log(this.state);
         return(
             <View style={styles.container}>
+                <Text style={styles.contSaludo}>
                 <Text style={styles.text}>
                     ¡Hola {this.state.username}!
                 </Text>
-            <Text>Posteos</Text>
+                </Text>
             {
                 this.state.posts.length ?
                 <FlatList 
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     text: {
         color: "black",
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: 40,
         fontWeight: '600',
     },
     container: {
@@ -116,7 +117,14 @@ const styles = StyleSheet.create({
         flex: 9,
         flexDirection: 'column',
     },
-
+    contSaludo: {
+        backgroundColor: 'pink',
+        marginTop: 15,
+        width: "100%",
+        marginBottom: 20,
+        height: 80,
+        textAlign: 'center',
+    }
 })
 
 export default Home;

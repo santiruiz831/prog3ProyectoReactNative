@@ -120,12 +120,13 @@ class Post extends Component {
           source={{ uri: this.props.dataPost.data.url }}
           style={styles.imagen}
         ></Image>
+        <Text>
         {this.state.myLike ? (
           <TouchableOpacity onPress={() => this.unLike()}>
              <Ionicons
                   style={styles.heartIcon}
                   name="heart"
-                  size="20px"
+                  size="30px"
                   color="red"
                 />
           </TouchableOpacity>
@@ -134,12 +135,13 @@ class Post extends Component {
            <Ionicons
                   style={styles.heartIcon}
                   name="heart-outline"
-                  size="20px"
+                  size="30px"
                   color="white"
                 />
           </TouchableOpacity>
         )}
-        <Text>Cantidad de likes: {this.state.cantidadDeLikes}</Text>
+        <Text>{this.state.cantidadDeLikes}</Text>
+        </Text>
         <Text ><Ionicons name="person-circle-outline" size="20px" color="black" />: {this.props.dataPost.data.description}</Text>
         
         
@@ -156,13 +158,14 @@ class Post extends Component {
         ) : null}
 
         <TouchableOpacity
+         style={styles.commentar}
           onPress={() =>
             this.props.navigation.navigate("Comments", {
               post: this.props.dataPost,
             })
           }
         >
-          <Fontisto name="commenting" size={24} color="black" />
+          <Fontisto name="commenting" size={20} color="black" />
         </TouchableOpacity>
       </View>
     );
@@ -173,12 +176,16 @@ const styles = StyleSheet.create({
   separator: {
     borderBottomColor: "#ddd",
     borderBottomWidth: 1,
-    marginBottom: 10,
+    marginBottom: 20,
     paddingHorizontal: 20,
+    backgroundColor: 'pink',
+    borderRadius: 14,
+    marginLeft: 50,
+    marginRight: 50,
   },
   imagen: {
     width: "100%",
-    height: 200,
+    height: 400,
     borderRadius: 12,
   },
   inline: {
@@ -195,7 +202,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   closeModal: {
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     padding: 10,
     marginTop: 2,
     marginBottom: 10,
@@ -246,9 +253,13 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: "black",
     fontWeight: "600",
-    fontSize: 15,
+    fontSize: 20,
     padding: 5,
-  }
+  },
+  commentar: {
+    marginBottom: 20,
+    marginTop: 10,
+  },
 });
 
 export default Post;
