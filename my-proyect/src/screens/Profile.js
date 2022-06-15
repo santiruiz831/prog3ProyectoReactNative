@@ -62,58 +62,68 @@ class Profile extends Component {
                         username: postsAux[0].data.userName,
                         loader: false,
                     });
-                   ;
+                    ;
                 }
             );
     }
 
 
     render() {
-       console.log(this.state.username)
+        console.log(this.state.username)
         return (
-            <View style={styles.contFlat}>
-                <Text style={styles.titulo}> Mi Perfil</Text>
-                <Text>
-                    {this.state.username} 
-                </Text>
-                <Text>
-                    {auth.currentUser.email} 
-                </Text>
-                <Text>
-                    Última fecha de ingreso:
-                </Text>
-                <Text>
-                    {auth.currentUser.metadata.lastSignInTime}
-                </Text>
-                <Text>
-                    <Text >Publicaciones:</Text>
-                    <Text >
-                        {this.state.posts.length}
+            <View style={styles.background}>
+                <View style={styles.contFlat}>
+                    <Text style={styles.titulo}> Mi Perfil</Text>
+
+                    <Text style={styles.username}>
+                        {this.state.username}
                     </Text>
-                </Text>
-                {this.state.posts.length > 0 ? (
-                    <FlatList
-                        data={this.state.posts}
-                        keyExtractor={(post) => post.id.toString()}
-                        renderItem={({ item }) => <Post dataPost={item} {...this.props}/>}
-                    />
-                ) : (
-                    <View style={styles.noFlatlist}>
-                        <Text>
-                            No tenés niguna publicación.
+
+                    <Text style={styles.text}>
+                        <Text style={styles.boldText}>
+                            {auth.currentUser.email} </Text>
+                    </Text>
+
+                    <Text style={styles.text}>
+                        <Text style={styles.boldText}>
+                            Última fecha de ingreso:
                         </Text>
-                    </View>
-                )}
+                        <Text style={styles.paddingLeft}>
+                            {auth.currentUser.metadata.lastSignInTime}
+                        </Text>
+                    </Text>
 
-                <TouchableOpacity onPress={() => this.props.logout()}>
-                    <Ionicons
-                        style={styles.icon}
-                        name="log-out-outline"
-                        size="20px"
-                        color="white"
-                    />
-                </TouchableOpacity>
+                    <Text style={styles.text}>
+                        <Text style={styles.boldText} >Publicaciones:</Text>
+                        <Text style={styles.paddingLeft}>
+                            {this.state.posts.length}
+                        </Text>
+                    </Text>
+                    {this.state.posts.length > 0 ? (
+                        <FlatList
+                            data={this.state.posts}
+                            style={styles.flatlist}
+                            keyExtractor={(post) => post.id.toString()}
+                            renderItem={({ item }) => <Post dataPost={item} {...this.props} />}
+                        />
+                    ) : (
+                        <View style={styles.noFlatlist}>
+                            <Text style={styles.textBlack}>
+                                No tenés niguna publicación.
+                            </Text>
+                        </View>
+                    )}
 
+                    <TouchableOpacity onPress={() => this.props.logout()}>
+                        <Ionicons
+                            style={styles.icon}
+                            name="log-out-outline"
+                            size="20px"
+                            color="white"
+                        />
+                    </TouchableOpacity>
+
+                </View>
             </View>
         );
     }
@@ -125,9 +135,10 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#f2e9e4",
-        color: "#ff9f68",
+        backgroundColor: "#fdf7ff",
+        color: "#fdf7ff",
     },
+
     noFlatlist: {
         width: "100%",
         flex: 9,
@@ -135,24 +146,65 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-    btn: {
-        backgroundColor: "#ffb703",
-        color: "black",
+
+    flatlist: {
+        overflow: "hidden",
+        width: "100%",
+        flex: 9,
+        flexDirection: "column",
+    },
+
+    icon: {
+        backgroundColor: "#40194f",
+        color: "white",
         textAlign: "center",
         padding: 7,
         marginTop: 5,
         borderRadius: 15,
-        width: "80%",
+        width: "100%",
     },
+
     titulo: {
-        color: "black",
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight: '600',
+        color: "#40194f",
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: '600',
+        backgroundColor: '#cbb9d2',
+
     },
+
     contFlat: {
         flex: 1,
-    }
+        
+    },
+
+    background: {
+        backgroundColor: "#fdf7ff",
+        flex: 9,
+        flexDirection: "column",
+    },
+
+    username: {
+        textAlign: "left",
+        color: "cbb92d",
+        fontWeight: "600",
+        fontSize: 15,
+        padding: 5,
+    },
+
+    boldText: {
+        fontSize: "30",
+        fontWeight: "bold",
+        color: "#40194f",
+
+    },
+    paddingLeft: {
+        paddingLeft: "5px",
+    },
+    text: {
+        padding: 5,
+    },
+
 });
 
 
