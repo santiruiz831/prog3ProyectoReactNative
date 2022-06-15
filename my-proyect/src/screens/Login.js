@@ -23,19 +23,19 @@ class Login extends Component {
   render() {
     //Falta implementar for de login y el método que viene de mainNavigation
     return (
-      <View>
-        <Text> Login</Text>
+      <View style={styles.todo}>
+        <Text style={styles.bienve}> ¡Bienvenido de vuelta!</Text>
         <View style={styles.container}>
           <TextInput
             style={styles.input}
             keyboardType="email-adress"
-            placeholder="email"
+            placeholder="Email"
             onChangeText={(text) => this.setState({ email: text })}
           />
           <TextInput
             style={styles.input}
             keyboardType="default"
-            placeholder="password"
+            placeholder="Password"
             secureTextEntry={true}
             onChangeText={(text) => this.setState({ password: text })}
           />
@@ -49,12 +49,13 @@ class Login extends Component {
           <View>{console.log(this.state.email)}</View>
         </View>
         
-        <Text> El error es: {this.props.errores} </Text>
+        <Text style={styles.error}> El error es: {this.props.errores} </Text>
 
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Registro")}
+          style={styles.cambiar}
         >
-          <Text>No tengo cuenta</Text>
+          <Text style={styles.cambio}>No tengo cuenta</Text>
         </TouchableOpacity>
       </View>
     );
@@ -62,33 +63,65 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+  todo: {
+    backgroundColor: "#fdf7ff",
+    height: '100%'
+    
+  },
+  bienve: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#40194f',
+    marginTop: 20,
+  },
     container:{
         paddingVertical: 10,
-        marginTop: 20
+        marginTop: 20,
+        textAlign: 'center',
     },
     input:{
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderStyle: 'solid',
-        borderRadius: 6,
-        marginVertical: 10
+      width: "100%",
+      backgroundColor: "#cbb9d2",
+      textAlign: 'center',
+      padding: 7,
+      marginTop: 5,
+      borderRadius: 15,
     },
     botton:{
+      
         backgroundColor: '#28a745',
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
-        borderRadius: 4,
+        borderRadius: 15,
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: '#28a745',
+        textAlign: 'center',
+      padding: 7,
+      marginTop: 15,
+      borderRadius: 15,
+      width: '100%',
     },
     text:{
         color: '#fff'
-    }    
+    }    ,
+    error: {
+      textAlign: "left",
+      color: "#40194f",
+      fontWeight: "600",
+      fontSize: 20,
+      padding: 5,
+    },
+    cambiar: {
+      backgroundColor: '#cbb9d2',
+      height: 50,
+      width: 100,
+  },
+  cambio: {
+    color: '#40194f'
+}
  })
 
 export default Login;

@@ -59,35 +59,39 @@ class Comments extends Component{
     render(){
         console.log(this.props);
         return(
-                <View>
-                    <Text> Comentarios</Text>
+                <View style={styles.contenedor}>
+                    <Text style={styles.titulo}> Comentarios</Text>
                     {/* Renderizar la lista de comentarios del posteo */}
                    
                     {this.state.comments.length == 0 ?
-                    <Text>Aun no hay comentarios. Se el primero en comentar</Text>
+                    <Text style={styles.aun}>Aun no hay comentarios! Se el primero en comentar</Text>
                     :
+                    <View style={styles.flat}>
                     <FlatList 
                         data={this.state.comments}
                         keyExtractor={ posts => posts.id}
-                        renderItem = { ({item}) => 
-                        
-                        <Text>{item.owner}: {item.text}</Text> }
+                        renderItem = { ({item}) => <View style={styles.commenta}>
+                        <Text style={styles.quien}>{item.owner}:</Text> <Text>{item.text}</Text>
+                        </View> }
                     />
+                    </View>
                     }
                     
                  
                     {/* Un formulario para cargar un comentario */}
-                    <TextInput 
-                    style={styles.field}
-                    keyboardType='default'
-                    placeholder='Agregar un comentario'
-                    onChangeText={text => this.setState({ commentText: text})}
-                    value={this.state.commentText}
-                    />
+                    
+                        <TextInput 
+                        style={styles.field}
+                        keyboardType='default'
+                        placeholder='Agregar un comentario'
+                        onChangeText={text => this.setState({ commentText: text})}
+                        value={this.state.commentText}
+                        />
 
-                <TouchableOpacity style={styles.button} onPress={()=>this.agregarComentarios()}>
-                    <Text style={ styles.buttonText}>Comentar</Text>
-                </TouchableOpacity>   
+                        <TouchableOpacity style={styles.button} onPress={()=>this.agregarComentarios()}>
+                            <Text style={ styles.buttonText}>Comentar</Text>
+                        </TouchableOpacity>  
+                  
                 </View>
         )
     }
@@ -105,19 +109,58 @@ const styles = StyleSheet.create({
     field:{
         borderColor: '#dcdcdc',
         borderWidth: 1,
-        borderRadius: 2,
-        padding:3,
-        marginBottom:8
+        borderRadius: 15,
+        padding: 3,
+        marginBottom: 8,
+        width: '100%',
+        marginLeft: 10,
 
     },
     button: {
-        borderRadius: 2,
+        borderRadius: 15,
         padding:3,
         backgroundColor: 'green',
+        height: 25,
     },
     buttonText:{
-        color: '#fff'
-    }
+        color: '#fff',
+        marginLeft: 10,
+    },
+    contenedor: {
+        backgroundColor: "#fdf7ff",
+    },
+    titulo: {
+        color: "#40194f",
+        textAlign: 'center',
+        fontSize: 40,
+        fontWeight: '600',
+        backgroundColor: '#cbb9d2',
+    },
+    aun: {
+        color: '#40194f',
+        fontSize: 20,
+        fontWeight: '600',
+        marginBottom: 20,
+        marginLeft: 20,
+        textAlign: 'center',
+        marginTop: 30,
+    },
+    flat: {
+        marginTop: 20,
+        marginBottom: 20,
+        marginLeft: 10,
+    },
+    commenta: {
+        flexWrap: "wrap",
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+    },
+    quien: {
+        color: "#40194f",
+    fontWeight: "bold",
+    },
+    
 })
 
 export default Comments;

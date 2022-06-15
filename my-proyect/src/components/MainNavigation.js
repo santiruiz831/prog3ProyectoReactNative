@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import { auth, db } from '../firebase/config';
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    StyleSheet,
+    Modal,
+    Image,
+  } from "react-native";
 
 //Importar navegaciones
 import { NavigationContainer } from '@react-navigation/native';
@@ -80,7 +89,7 @@ class MainNavigation extends Component {
     render() {
         console.log('En el render del menu ' + this.state.registerError)
         return (
-            <NavigationContainer>
+            <NavigationContainer style={styles.todo}>
                 <Stack.Navigator>
                     {
                         this.state.loggedIn ?
@@ -121,5 +130,12 @@ class MainNavigation extends Component {
 
 
 }
+
+const styles = StyleSheet.create({
+    todo: {
+      backgroundColor: "#fdf7ff",
+    }, 
+   })
+  
 
 export default MainNavigation

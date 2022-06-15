@@ -115,7 +115,19 @@ class Post extends Component {
     console.log(this.props.dataPost);
     return (
       <View style={styles.separator}>
-        <Text style={styles.owner}>{this.props.dataPost.data.owner}</Text>
+        <View style={styles.parteArriba}>
+        <Text style={styles.owner}><Ionicons name="person-circle-outline" size="20px" color="#40194f" /> {this.props.dataPost.data.owner}</Text>
+        {this.props.dataPost.data.owner == auth.currentUser.email ? (
+          <TouchableOpacity
+            style={styles.closeModal}
+            onPress={() => {
+              this.deletePost(this.props.dataPost.data.id);
+            }}
+          >
+            <Ionicons name="trash" size="15px" color="red" />
+          </TouchableOpacity>
+        ) : null}
+        </View>
         <Image
           source={{ uri: this.props.dataPost.data.url }}
           style={styles.imagen}
@@ -136,26 +148,20 @@ class Post extends Component {
                   style={styles.heartIcon}
                   name="heart-outline"
                   size="30px"
-                  color="white"
+                  color="#40194f"
                 />
           </TouchableOpacity>
         )}
         <Text style={styles.numer}>{this.state.cantidadDeLikes}</Text>
         </Text>
-        <Text style={styles.numer}><Ionicons name="person-circle-outline" size="20px" color="white" />: {this.props.dataPost.data.description}</Text>
-        
+
+        <View style={styles.parteAbajo}>
+          <Text style={styles.quien}>{this.props.dataPost.data.owner} </Text>
+        <Text style={styles.numer}>{this.props.dataPost.data.description}</Text>
+        </View>
         
 
-        {this.props.dataPost.data.owner == auth.currentUser.email ? (
-          <TouchableOpacity
-            style={styles.closeModal}
-            onPress={() => {
-              this.deletePost(this.props.dataPost.data.id);
-            }}
-          >
-            <Ionicons name="trash" size="15px" color="red" />
-          </TouchableOpacity>
-        ) : null}
+
 
         <TouchableOpacity
          style={styles.commentar}
@@ -165,7 +171,7 @@ class Post extends Component {
             })
           }
         >
-          <Fontisto name="commenting" size={20} color="white" />
+          <Fontisto name="commenting" size={20} color="#40194f" />
         </TouchableOpacity>
       </View>
     );
@@ -185,7 +191,7 @@ const styles = StyleSheet.create({
   },
   imagen: {
     width: "100%",
-    height: 400,
+    height: 200,
     borderRadius: 12,
   },
   inline: {
@@ -251,7 +257,7 @@ const styles = StyleSheet.create({
   },
   owner: {
     textAlign: "left",
-    color: "violet",
+    color: "#40194f",
     fontWeight: "600",
     fontSize: 20,
     padding: 5,
@@ -262,6 +268,23 @@ const styles = StyleSheet.create({
   },
   numer: {
     color: 'white'
+  },
+  parteArriba: {
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    margin: 5,
+  },
+  quien: {
+    color: "#40194f",
+    fontWeight: "bold",
+  },
+  parteAbajo: {
+    flexWrap: "wrap",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
   }
 });
 

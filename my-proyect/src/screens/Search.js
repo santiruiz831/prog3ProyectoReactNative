@@ -69,21 +69,21 @@ class Search extends Component {
                             disabled={this.state.email == '' ? true : false}
                         >
                             <Text style={styles.buttonText}>
-                            <FontAwesome name="search" size={24} color="white" />
+                            <FontAwesome name="search" size={24} color="#40194f" />
                             </Text>
                         </TouchableOpacity>
                     </Text>
                 </View>
                 {this.state.posts.length != 0 ?
                     <FlatList
-                style={styles.posts}
+                    style={styles.posts}
                     data={this.state.posts}
                     keyExtractor={post => post.id}
                     renderItem={({ item }) => <Post dataPost={item}
                         {...this.props} />}
-                />
+                    />
                     :
-                    <Text>Este usuario no tiene Posteos</Text>
+                    <Text  style={styles.texto}>Este usuario aún no tiene posteos</Text>
                 
                 }
                 
@@ -95,10 +95,9 @@ class Search extends Component {
 
 const styles = StyleSheet.create({
     container: {
- 
         flex: 1,
-        backgroundColor: "#616161",
-        color: "#ff9f68",
+        backgroundColor: "#fdf7ff",
+        color: "#fdf7ff",
     },
     form: {
         flex: 1,
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     titulo: {
-        color: 'violet',
+        color: '#40194f',
         fontSize: 20,
         fontWeight: '600',
         marginTop: 20,
@@ -130,6 +129,14 @@ const styles = StyleSheet.create({
     },
     posts: {
         marginTop: 100,
+    },
+    texto: {
+        color: '#40194f',
+        fontSize: 20,
+        fontWeight: '600',
+        marginBottom: 20,
+        marginLeft: 20,
+        textAlign: 'center',
     }
 })
 

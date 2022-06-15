@@ -78,7 +78,7 @@ class Home extends Component {
                 renderItem = { ({item}) => <Post dataPost={item} {...this.props} />}
             />
             :
-            <Text>No hay Posteos</Text>
+            <Text style={styles.noHay}>No hay Posteos</Text>
             
             }
            
@@ -116,6 +116,14 @@ const styles = StyleSheet.create({
         width: "100%",
         marginBottom: 20,
         height: 50,
+        textAlign: 'center',
+    },
+    noHay: {
+        color: '#40194f',
+        fontSize: 20,
+        fontWeight: '600',
+        marginBottom: 20,
+        marginLeft: 20,
         textAlign: 'center',
     }
 })

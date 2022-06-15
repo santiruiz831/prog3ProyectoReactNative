@@ -49,10 +49,10 @@ class Register extends Component {
                     <Text style={styles.text}>Registrarme</Text>
                 </TouchableOpacity>
 
-                <Text> El error es: {this.props.errores} </Text>
+                <Text style={styles.error}> El error es: {this.props.errores} </Text>
 
-                <TouchableOpacity style={styles.botton} onPress={() => this.props.navigation.navigate('Login')}>
-                    <Text style={styles.text}>Ya tengo cuenta</Text>
+                <TouchableOpacity style={styles.cambiar} onPress={() => this.props.navigation.navigate('Login')}>
+                    <Text style={styles.cambio}>Ya tengo cuenta</Text>
                 </TouchableOpacity>
 
             </View>
@@ -65,17 +65,24 @@ class Register extends Component {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 10,
-        marginTop: 10
+        marginTop: 10,
+        height: '100%'
     },
     title: {
-        marginBottom: 20
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: '600',
+        color: '#40194f',
+        marginTop: 20,
+        marginBottom: 20,
     },
     field: {
-        borderColor: '#dcdcdc',
-        borderWidth: 1,
-        borderRadius: 2,
-        padding: 3,
-        marginBottom: 8
+        width: "100%",
+        backgroundColor: "#cbb9d2",
+        textAlign: 'center',
+        padding: 7,
+        marginTop: 5,
+        borderRadius: 15,
 
     },
     botton: {
@@ -83,15 +90,34 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: 'center',
-        borderRadius: 4,
+        borderRadius: 15,
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: '#28a745',
-        marginTop: 10,
+        textAlign: 'center',
+      padding: 7,
+      marginTop: 15,
+      borderRadius: 15,
+      width: '100%',
     },
     text: {
         color: '#fff',
-    }
+    },
+    error: {
+        textAlign: "left",
+        color: "#40194f",
+        fontWeight: "600",
+        fontSize: 20,
+        padding: 5,
+      },
+      cambiar: {
+          backgroundColor: '#cbb9d2',
+          height: 50,
+      width: 100,
+      },
+      cambio: {
+          color: '#40194f'
+      }
 })
 
 export default Register;
