@@ -45,7 +45,7 @@ class Menu extends Component {
                 children = { (navigationProps)=><Profile logout={() =>this.props.logout()} {... navigationProps}/>}
                 />
                 <Tab.Screen 
-                    name='New Post' 
+                    name='NewPost' 
                     component={ NewPost }
                     options={
                         { tabBarIcon: () => <FontAwesome name="photo" size={24} color="black" /> }

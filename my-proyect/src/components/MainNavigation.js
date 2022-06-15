@@ -50,7 +50,7 @@ class MainNavigation extends Component {
 
     register(email, password, username) {
 
-        auth.createUserWithEmailAndPassword(email, password, username)
+        auth.createUserWithEmailAndPassword(email, password)
             .then(responseRegister => {
                 console.log(responseRegister);
                 db.collection('users').add({

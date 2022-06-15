@@ -140,9 +140,9 @@ class Post extends Component {
                 />
           </TouchableOpacity>
         )}
-        <Text>{this.state.cantidadDeLikes}</Text>
+        <Text style={styles.numer}>{this.state.cantidadDeLikes}</Text>
         </Text>
-        <Text ><Ionicons name="person-circle-outline" size="20px" color="black" />: {this.props.dataPost.data.description}</Text>
+        <Text style={styles.numer}><Ionicons name="person-circle-outline" size="20px" color="white" />: {this.props.dataPost.data.description}</Text>
         
         
 
@@ -165,7 +165,7 @@ class Post extends Component {
             })
           }
         >
-          <Fontisto name="commenting" size={20} color="black" />
+          <Fontisto name="commenting" size={20} color="white" />
         </TouchableOpacity>
       </View>
     );
@@ -174,11 +174,11 @@ class Post extends Component {
 
 const styles = StyleSheet.create({
   separator: {
-    borderBottomColor: "#ddd",
+    borderBottomColor: "#263238",
     borderBottomWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 20,
-    backgroundColor: 'pink',
+    backgroundColor: '#cbb9d2',
     borderRadius: 14,
     marginLeft: 50,
     marginRight: 50,
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     margin: "auto",
     marginTop: 15,
     borderRadius: 15,
-    shadowColor: "black",
+    shadowColor: "#263238",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
-    backgroundColor: "#4A4E69",
+    backgroundColor: "#263238",
   },
   text: {
     color: "white",
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
   },
   owner: {
     textAlign: "left",
-    color: "black",
+    color: "violet",
     fontWeight: "600",
     fontSize: 20,
     padding: 5,
@@ -260,6 +260,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 10,
   },
+  numer: {
+    color: 'white'
+  }
 });
 
 export default Post;

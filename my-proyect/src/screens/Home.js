@@ -97,32 +97,33 @@ class Home extends Component {
 }
 const styles = StyleSheet.create({
     text: {
-        color: "black",
+        color: "#40194f",
         textAlign: 'center',
         fontSize: 40,
         fontWeight: '600',
+        backgroundColor: '#cbb9d2',
     },
     container: {
-        overflow: "hidden",
+        overflow: "scroll",
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#f2e9e4",
-        color: "#ff9f68",
+        backgroundColor: "#fdf7ff",
+        color: "#616161",
     },
     flat: {
-        overflow: "hidden",
+        overflow: "scroll",
         width: "100%",
         flex: 9,
         flexDirection: 'column',
     },
     contSaludo: {
-        backgroundColor: 'pink',
+        backgroundColor: '#cbb9d2',
         marginTop: 15,
         width: "100%",
         marginBottom: 20,
-        height: 80,
+        height: 50,
         textAlign: 'center',
     }
 })

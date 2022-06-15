@@ -122,7 +122,7 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        overflow: "hidden",
+       overflow: "scroll",
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
@@ -131,13 +131,13 @@ const styles = StyleSheet.create({
         color: "#ff9f68",
     },
     flatlist: {
-        overflow: "hidden",
+        overflow: "scroll",
         width: "100%",
         flex: 9,
         flexDirection: "column",
     },
     noFlatlist: {
-        overflow: "hidden",
+       overflow: "scroll",
         width: "100%",
         flex: 9,
         flexDirection: "column",
