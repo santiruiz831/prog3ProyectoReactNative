@@ -85,7 +85,11 @@ class MyCamera extends Component {
                                 <TouchableOpacity 
                                     style={styles.button}
                                     onPress={()=>this.takePicture()}>       
-                                    <Text style={styles.text}> Tomar foto </Text> 
+                                    <Text style={styles.text}> <Ionicons
+                                            name="aperture-outline"
+                                            size="40px"
+                                            color="white"
+                                        /> </Text> 
                                 </TouchableOpacity>       
                             </View> 
                             :
@@ -96,16 +100,16 @@ class MyCamera extends Component {
                                     resizeMode = 'cover'
                                 />
                             <View style={styles.buttonContainer}>
-                            <TouchableOpacity
-                                style={styles.buttons}
-                                onPress={() => this.savePicture()}>
-                                <Ionicons name="checkmark-circle-outline" size="50px" color="green" />
-                            </TouchableOpacity>       
-                            <TouchableOpacity
-                                style={styles.buttons}
-                                onPress={() => this.eliminatePreview()}>
-                                <Ionicons name="close-circle-outline" size="50px" color="red" />
-                            </TouchableOpacity> 
+                                <TouchableOpacity
+                                    style={styles.buttons}
+                                    onPress={() => this.savePicture()}>
+                                    <Ionicons name="checkmark-circle-outline" size="50px" color="green" />
+                                </TouchableOpacity>       
+                                <TouchableOpacity
+                                    style={styles.buttons}
+                                    onPress={() => this.eliminatePreview()}>
+                                    <Ionicons name="close-circle-outline" size="50px" color="red" />
+                                </TouchableOpacity> 
                             </View>   
                             </View>
                     :
@@ -154,11 +158,10 @@ const styles = StyleSheet.create ({
     buttonContainer:{
         marginTop: 20,
         backgroundColor: "#cbb9d2",
-        flexDirection: 'row',
         padding: 5,
         width: '100%',
-        
-       
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     },
  
     

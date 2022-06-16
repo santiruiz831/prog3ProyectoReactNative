@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { auth, db } from '../firebase/config';
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    Modal,
-    Image,
-  } from "react-native";
+import {StyleSheet} from "react-native";
 
 //Importar navegaciones
 import { NavigationContainer } from '@react-navigation/native';

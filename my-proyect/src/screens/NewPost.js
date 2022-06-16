@@ -61,7 +61,7 @@ class NewPost extends Component{
                             <TextInput
                                 style={styles.field}
                                 keyboardType='default'
-                                placeholder='description'
+                                placeholder='Description...'
                                 onChangeText={text => this.setState({ description: text })}
                                 multiline
                                 value={this.state.description}
