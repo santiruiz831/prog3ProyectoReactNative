@@ -85,16 +85,17 @@ class MyCamera extends Component {
                                 <TouchableOpacity 
                                     style={styles.button}
                                     onPress={()=>this.takePicture()}>       
-                                    <Text> Tomar foto </Text> 
+                                    <Text style={styles.text}> Tomar foto </Text> 
                                 </TouchableOpacity>       
                             </View> 
                             :
-                            <View>
+                            <View style={styles.previewContainer}>
                                 <Image
                                     style={styles.preview}
                                     source={{ uri: this.state.url }}
                                     resizeMode = 'cover'
                                 />
+                            <View style={styles.buttonContainer}>
                             <TouchableOpacity
                                 style={styles.buttons}
                                 onPress={() => this.savePicture()}>
@@ -104,7 +105,8 @@ class MyCamera extends Component {
                                 style={styles.buttons}
                                 onPress={() => this.eliminatePreview()}>
                                 <Ionicons name="close-circle-outline" size="50px" color="red" />
-                            </TouchableOpacity>       
+                            </TouchableOpacity> 
+                            </View>   
                             </View>
                     :
                      <Text> No tengo permisos de cámara </Text>
@@ -116,26 +118,39 @@ class MyCamera extends Component {
 }
 const styles = StyleSheet.create ({
     cameraBody: {
-        height: '80%',
-        width: '60%'
+        height: '100%',
+        width: '100%',
+        alignContent: 'center',
+        borderRadius: 15
     },
     button: {
-        height: '20%',
-        borderColor: 'pink',
-        borderWidth: 1,
-        padding: 5,
-        borderRadius: 4,
-        marginTop: 20,
-        backgroundColor: "pink",
+        backgroundColor: "#40194f",
+        color: "white",
+        textAlign: "center",
+        padding: 7,
+        marginTop: 5,
+        borderRadius: 15,
+        width: "40%",
+    },
+    text:{
+        color: 'white'
     },
     preview: {
         height: '100%',
-        width: '90%'
+        width: '100%',
+        borderRadius: 4
+    },
+    previewContainer: {
+        height: '80%'
     },
     buttons: {
-        width: "60%",
-        
+        width: "30%",
     },
+    buttonContainer:{
+        flexDirection: 'row',
+        width: '40%'
+    }
+    
 })
 
 export default MyCamera;

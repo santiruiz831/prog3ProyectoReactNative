@@ -80,27 +80,35 @@ const styles = StyleSheet.create({
     container:{
         paddingHorizontal:10,
         marginTop: 10,
-        height: '100%'
+        height: '50%'
     },
     title:{
-        marginBottom:20
+        marginBottom: 20,
     },
     button: {
-        borderRadius: 2,
-        padding:3,
-        backgroundColor: 'green',
+        backgroundColor: "#40194f",
+        color: "white",
+        textAlign: "center",
+        padding: 7,
+        marginTop: 5,
+        borderRadius: 10,
+        width: "40%",
     },
     buttonText:{
-        color: '#fff'
+        color: '#fff',
+        textAlign: 'center',
+        fontFamily: 'helvetica'
     },
     container: {
-  
         flex: 1,
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#f2e9e4",
         color: "#ff9f68",
+        width: '90%',
+        height: '30%'
+
     },
     field: {
         color: "white",
