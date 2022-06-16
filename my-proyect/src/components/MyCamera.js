@@ -123,14 +123,19 @@ const styles = StyleSheet.create ({
         alignContent: 'center',
         borderRadius: 15
     },
-    button: {
-        backgroundColor: "#40194f",
+    button: {  
         color: "white",
         textAlign: "center",
         padding: 7,
-        marginTop: 5,
         borderRadius: 15,
-        width: "40%",
+        width: "100%",
+        backgroundColor: "#40194f",
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: "#40194f",
+        marginTop: 15,
+        margin: 10,
+        alignContent: 'center',
     },
     text:{
         color: 'white'
@@ -144,12 +149,19 @@ const styles = StyleSheet.create ({
         height: '80%'
     },
     buttons: {
-        width: "30%",
+        alignItems: 'center',
     },
     buttonContainer:{
+        marginTop: 20,
+        backgroundColor: "#cbb9d2",
         flexDirection: 'row',
-        width: '40%'
-    }
+        padding: 5,
+        width: '100%',
+        
+       
+    },
+ 
+    
     
 })
 

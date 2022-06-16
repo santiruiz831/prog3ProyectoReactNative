@@ -51,13 +51,13 @@ class NewPost extends Component{
 
     render(){
         return(
+          
                 <View style={styles.container}> 
                     {
                     this.state.showCamera ?
                         <MyCamera onImageUpload={(url) => this.onImageUpload(url)} /> 
                     :
                         <View style={styles.container}>
-                            <Text style={styles.title}>Nuevo Post</Text>
                             <TextInput
                                 style={styles.field}
                                 keyboardType='default'
@@ -66,50 +66,50 @@ class NewPost extends Component{
                                 multiline
                                 value={this.state.description}
                             />
+                            
                             <TouchableOpacity style={styles.button} onPress={() => this.guardarPost()}>
                                 <Text style={styles.buttonText}>Publicar</Text>
                             </TouchableOpacity>
                         </View>
                     }
                 </View>
+           
+            
         )   
     }
 }
 
 const styles = StyleSheet.create({
+   
     container:{
         paddingHorizontal:10,
-        marginTop: 10,
-        height: '50%'
-    },
-    title:{
-        marginBottom: 20,
-    },
-    button: {
-        backgroundColor: "#40194f",
-        color: "white",
-        textAlign: "center",
-        padding: 7,
         marginTop: 5,
-        borderRadius: 10,
-        width: "40%",
+        height: '99%',
+        backgroundColor: "#fdf7ff",
+    },
+    
+    button: {
+        color: "white",
+        backgroundColor: "#40194f",
+        textAlign: 'center',
+        borderRadius: 15,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: '#40194f',
+        marginTop: 15,
+        width: '100%',
+        padding: 7,
+        margin: 10,
+      
     },
     buttonText:{
-        color: '#fff',
+        backgroungColor: '#40194f',
         textAlign: 'center',
-        fontFamily: 'helvetica'
-    },
-    container: {
-        flex: 1,
-        flexDirection: "column",
+        fontFamily: 'helvetica',
         justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#f2e9e4",
-        color: "#ff9f68",
-        width: '90%',
-        height: '30%'
-
+        color: "white"
     },
+ 
     field: {
         color: "white",
         flex: 1,
@@ -120,12 +120,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         backgroundColor: "rgba(0, 0, 0, 0.247)",
     },
-    image: {
-        marginTop: 15,
-        height: 300,
-        width: "90%",
-        borderRadius: 12,
-    },
+    
 });
 
 export default NewPost;
