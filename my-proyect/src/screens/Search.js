@@ -122,12 +122,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     field: {
-        borderColor: '#dcdcdc',
-        borderWidth: 1,
-        borderRadius: 2,
+        borderRadius: 15,
         padding: 3,
         marginBottom: 8,
-        width: '90%'
+        width: '100%',
+        marginTop: 20,
+        backgroundColor: '#cbb9d2',
     },
     button: {
         height: 30,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
     },
     posts: {
-        marginTop: 100,
+        marginTop: 60,
     },
     texto: {
         color: '#40194f',

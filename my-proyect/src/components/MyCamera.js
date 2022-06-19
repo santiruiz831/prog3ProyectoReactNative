@@ -112,7 +112,7 @@ class MyCamera extends Component {
                             </View>   
                             </View>
                     :
-                     <Text> No tengo permisos de cámara </Text>
+                     <Text style={styles.permisos}> No tengo permisos de cámara </Text>
                 }
                 </View>
         )
@@ -125,6 +125,15 @@ const styles = StyleSheet.create ({
         width: '100%',
         alignContent: 'center',
         borderRadius: 15
+    },
+    permisos: {
+        color: '#40194f',
+        fontSize: 20,
+        fontWeight: '600',
+        marginBottom: 20,
+        marginLeft: 20,
+        textAlign: 'center',
+        marginTop: 30,
     },
     button: {  
         color: "white",
