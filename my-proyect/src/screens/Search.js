@@ -20,13 +20,16 @@ class Search extends Component {
             posts: [],
             email: '',
             whoIs: '',
+            users: [],
+            searchInput: "",
+            loader: true,
         }
     }
 
     // Obtener información a partir de una búsqueda.
-    search(email) {
-        db.collection('posts').where('owner', '==', email).onSnapshot(
-            docs => {
+    componentDidMount() {
+        db.collection('posts').orderBy("createdAt", "desc").onSnapshot(
+            (docs) => {
                 let posts = [];
                 docs.forEach(oneDoc => {
                     posts.push({
@@ -37,59 +40,80 @@ class Search extends Component {
 
                 this.setState({
                     posts: posts,
-                    email: '',
-                    whoIs: email,
+           
+           
                 })
             }
-        )
+        );
+        db.collection("users")
+            
+            .onSnapshot(
+                (docs) => {
+                    let postsAux = [];
+                    docs.forEach((doc) => {
+                        postsAux.push({
+                            id: doc.id,
+                            data: doc.data(),
+                        });
+                    }); // For each
+                    console.log(postsAux)
+                    this.setState({
+                        users: postsAux,
+                        loader: false,
+                    });
+                    ;
+                }
+            );
 
 
     }
 
 
     render() {
-        // console.log(this.state);
+        
+        
+        
         return (
+            <>
             <View style={styles.container}>
-                {/* Si no hay resultados deben mostrar un mensaje al usuario. Puede ser un mensaje único o segmenteado: en caso de que el usuario no exista o si el usuario existe indicar que aún no tiene posteos. */}
-                <Text style={styles.titulo}>Posts del usuario: {this.state.whoIs}</Text>
-                <View style={styles.form}>
-                    <Text>
+                {this.state.loader ? (
+                    <ActivityIndicator size="large" color="blue" /> 
+                ) : (
+                    <>
+              
                         <TextInput
                             style={styles.field}
                             keyboardType='default'
                             placeholder='Email a buscar...'
-                            value={this.state.email}
-                            onChangeText={text => this.setState({ email: text })}
+                            placeholderTextColor="black"
+                            onChangeText={(text) => this.setState({ searchInput: text })}
                         />
-                        <TouchableOpacity
-                            style={styles.button}
-                            onPress={() => this.search(this.state.email)}
-                            //👇 Les dejo un dato sorpresa para los que llegaron hasta acá: así se deshabilita un touchable opacity
-                            disabled={this.state.email == '' ? true : false}
-                        >
-                            <Text style={styles.buttonText}>
-                            <FontAwesome name="search" size={24} color="#40194f" />
-                            </Text>
-                        </TouchableOpacity>
-                    </Text>
-                </View>
-                {this.state.posts.length != 0 ?
+                        
+              
+                {filteredUsers.length > 0 ? (
+                    filterPosts.length > 0 ? (
                     <FlatList
                     style={styles.posts}
-                    data={this.state.posts}
-                    keyExtractor={post => post.id}
-                    renderItem={({ item }) => <Post dataPost={item}
-                        {...this.props} />}
+                    data={filterPosts}
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={(post) => post.id.toString()}
+                    renderItem={({ item }) => <Post dataPost={item}></Post>}
                     />
-                    :
-                    <Text  style={styles.texto}>Este usuario aún no tiene posteos</Text>
-                
+                ) : (
+                    <Text  style={styles.texto}>Lo siento, este usuario aun no hizo un posteo</Text>
+
+                )
+                ) : (
+                    <Text  style={styles.texto}>Ese usuario no existe. Por favor, prueba con otro.</Text>
+
+                )
                 }
+                </>
+            )}
                 
             </View>
-
-        )
+</>
+        );
     }
 }
 
