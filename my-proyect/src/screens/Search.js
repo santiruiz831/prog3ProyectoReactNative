@@ -83,7 +83,7 @@ class Search extends Component {
                             style={styles.field}
                             keyboardType='default'
                             placeholder='Email a buscar...'
-                            placeholderTextColor="black"
+                            placeholderTextColor="whithe"
                             onChangeText={(text) => this.setState({ searchInput: text })}
                         />
                         
@@ -118,36 +118,17 @@ const styles = StyleSheet.create({
         backgroundColor: "#fdf7ff",
         color: "#fdf7ff",
     },
-    form: {
-        flex: 1,
-        marginHorizontal: 20,
-    },
     field: {
-        borderColor: '#dcdcdc',
+        borderColor: '#40194f',
         borderWidth: 1,
-        borderRadius: 2,
+        borderRadius: 20,
         padding: 3,
-        marginBottom: 8,
-        width: '90%'
-    },
-    button: {
-        height: 30,
-        width: 30,
-        marginLeft: 10,
-    },
-    buttonText: {
-        color: '#fff'
-    },
-    titulo: {
-        color: '#40194f',
-        fontSize: 20,
-        fontWeight: '600',
-        marginTop: 20,
-        marginBottom: 20,
-        marginLeft: 20,
+        marginBottom: 3,
+        width: '100%',
+        marginTop: 10,
     },
     posts: {
-        marginTop: 100,
+        marginTop: 20,
     },
     texto: {
         color: '#40194f',

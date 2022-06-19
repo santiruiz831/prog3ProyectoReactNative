@@ -61,7 +61,6 @@ class MainNavigation extends Component {
     }
 
     logout() {
-        //console.log('hola')
         auth.signOut()
             .then(() => this.setState({ loggedIn: false }))
             .catch(error => console.log(error))
