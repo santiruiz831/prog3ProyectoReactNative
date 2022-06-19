@@ -21,7 +21,6 @@ class Login extends Component {
   }
 
   render() {
-    //Falta implementar for de login y el método que viene de mainNavigation
     return (
       <View style={styles.todo}>
         <Text style={styles.bienve}> ¡Bienvenido de vuelta!</Text>
@@ -39,7 +38,6 @@ class Login extends Component {
             secureTextEntry={true}
             onChangeText={(text) => this.setState({ password: text })}
           />
-
           <TouchableOpacity
             style={styles.botton}
             onPress={() => this.props.route.params.login(this.state.email, this.state.password)}

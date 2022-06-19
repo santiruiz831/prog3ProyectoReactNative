@@ -9,8 +9,6 @@ import { View,
 import { auth, db } from '../firebase/config';
 import Post from './Post';
 
-
-
 class Home extends Component {
     constructor(props){
         super(props);
@@ -30,7 +28,6 @@ class Home extends Component {
                         data: oneDoc.data()
                     })
                 })
-
                 this.setState({
                     posts: posts
                 })
@@ -56,8 +53,6 @@ class Home extends Component {
                    ;
                 }
             );
-
-        
     }
 
     render(){
@@ -65,9 +60,9 @@ class Home extends Component {
         return(
             <View style={styles.container}>
                 <Text style={styles.contSaludo}>
-                <Text style={styles.text}>
-                    ¡Hola {this.state.username}!
-                </Text>
+                    <Text style={styles.text}>
+                        ¡Hola {this.state.username}!
+                    </Text>
                 </Text>
             {
                 this.state.posts.length ?
@@ -79,14 +74,13 @@ class Home extends Component {
             />
             :
             <Text style={styles.noHay}>No hay Posteos</Text>
-            
             }
            
-        </View>
-
+            </View>
         )
     }
 }
+
 const styles = StyleSheet.create({
     text: {
         color: "#40194f",

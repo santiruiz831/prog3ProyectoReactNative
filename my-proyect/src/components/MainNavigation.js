@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import { auth, db } from '../firebase/config';
 import {StyleSheet} from "react-native";
-
-//Importar navegaciones
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// Guardar la ejecución de Stack
 const Stack = createNativeStackNavigator();
 
-//importar las screens o lo que necesite el menú
 import Login from '../screens/Login';
 import Register from '../screens/Register';
 import Menu from './Menu';
@@ -27,16 +23,11 @@ class MainNavigation extends Component {
     }
 
     componentDidMount() {
-
         auth.onAuthStateChanged(user => {
             console.log(user)
             if (user) this.setState({ loggedIn: true })
-
         })
-
-
     }
-
 
     login(mail, password) {
         auth.signInWithEmailAndPassword(mail, password)
@@ -50,7 +41,6 @@ class MainNavigation extends Component {
     }
 
     register(email, password, username) {
-
         auth.createUserWithEmailAndPassword(email, password)
             .then(responseRegister => {
                 console.log(responseRegister);
@@ -96,7 +86,6 @@ class MainNavigation extends Component {
                                 component={ Comments }
                             />
                             </Stack.Group>
-
                             :
                             <Stack.Group>
                                 <Stack.Screen
@@ -111,23 +100,18 @@ class MainNavigation extends Component {
                                     initialParams={{ register: (mail, pass, username) => this.register(mail, pass, username) }}
                                     children={(navigationProps) => <Register errores={this.state.registerError} {...navigationProps} />}
                                 />
-
                             </Stack.Group>
                     }
                 </Stack.Navigator>
             </NavigationContainer>
         )
     }
-
-
-
 }
 
 const styles = StyleSheet.create({
     todo: {
       backgroundColor: "#fdf7ff",
     }, 
-   })
+})
   
-
 export default MainNavigation

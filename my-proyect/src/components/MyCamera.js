@@ -12,7 +12,6 @@ import {db,storage} from '../firebase/config';
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 class MyCamera extends Component {
-
     constructor (props){
         super(props)
         this.state = {
@@ -21,10 +20,10 @@ class MyCamera extends Component {
             url: ''
         }
         console.log(props);
-        this.metodosDeCamara = ''   //se rellena con los metodos de camra del render
+        this.metodosDeCamara = ''   
     }
 
-    componentDidMount(){ //hay que pedir los permisos. si tengo muestro camara y sino texto
+    componentDidMount(){ 
         Camera.requestCameraPermissionsAsync()
             .then( ()=> this.setState({ 
                     permission:true,
@@ -32,19 +31,19 @@ class MyCamera extends Component {
             )
             .catch (error => console.log(error))
     }
-    takePicture() {  //usamos metodo de la camara para sacar la foto, guarda en url temporal asique necesitamos obtenerla para guardarla en estado. //usar un método de la cámara para sacar la foto.abs
+
+    takePicture() { 
         this.metodosDeCamara.takePictureAsync ()
         .then( photo => {
             this.setState ({
-                url: photo.uri,  //obtener la url temporal para guardarla en un estado.
+                url: photo.uri,  
                 showCamera: false,
-
             })
-
         })
         .catch()
     }
-    savePicture(){ //copiar de la diapo
+
+    savePicture(){
         fetch (this.state.url)
             .then( response => response.blob())
             .then(
@@ -55,7 +54,7 @@ class MyCamera extends Component {
                             ref.getDownloadURL()
                             .then( url => {
                                 console.log(this.props);
-                                this.props.onImageUpload(url) //tiene qu venir del padre
+                                this.props.onImageUpload(url)
                             })
                         })
                         .catch(error => console.log(error))
@@ -70,6 +69,7 @@ class MyCamera extends Component {
             showCamera: true
         });
     }
+
     render (){
         return(
                 <View style={styles.cameraBody}>
@@ -120,6 +120,7 @@ class MyCamera extends Component {
     }
 
 }
+
 const styles = StyleSheet.create ({
     cameraBody: {
         height: '100%',
@@ -162,10 +163,7 @@ const styles = StyleSheet.create ({
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-around',
-    },
- 
-    
-    
+    },   
 })
 
 export default MyCamera;

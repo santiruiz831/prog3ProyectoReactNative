@@ -10,7 +10,6 @@ import {
 import {auth, db} from '../firebase/config';
 import firebase from 'firebase';
 
-
 class Comments extends Component{
     constructor(props){
         super(props)
@@ -21,7 +20,6 @@ class Comments extends Component{
     }
 
     componentDidMount(){
-        //Obtener todos los comentarios de un posteo para renderizarlos. Hay que usar el id que recibimos por parámetro.
         db.collection('posts')
         .doc(this.props.route.params.post.id)
         .onSnapshot( doc => {
@@ -32,7 +30,6 @@ class Comments extends Component{
         )
     }
 
-    //Agregar comentario tiene que agregar un comentario dentro de un posteo. Puntualmente dentro de un array de comentarios.
     agregarComentarios(){
         if (this.state.commentText == '' ) {
             return 
@@ -61,8 +58,7 @@ class Comments extends Component{
         return(
                 <View style={styles.contenedor}>
                     <Text style={styles.titulo}> Comentarios</Text>
-                    {/* Renderizar la lista de comentarios del posteo */}
-                   
+    
                     {this.state.comments.length == 0 ?
                     <Text style={styles.aun}>Aun no hay comentarios! Se el primero en comentar</Text>
                     :
@@ -76,10 +72,6 @@ class Comments extends Component{
                     />
                     </View>
                     }
-                    
-                 
-                    {/* Un formulario para cargar un comentario */}
-                    
                         <TextInput 
                         style={styles.field}
                         keyboardType='default'
@@ -91,20 +83,18 @@ class Comments extends Component{
                         <TouchableOpacity style={styles.button} onPress={()=>this.agregarComentarios()}>
                             <Text style={ styles.buttonText}>Comentar</Text>
                         </TouchableOpacity>  
-                  
                 </View>
         )
     }
-
 }
 
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal:10,
-        marginTop: 10
+        marginTop: 10,
     },
     title:{
-        marginBottom:20
+        marginBottom:20,
     },
     field:{
         borderColor: '#dcdcdc',
@@ -114,7 +104,6 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         width: '100%',
         marginLeft: 10,
-
     },
     button: {
         borderRadius: 15,
@@ -159,8 +148,7 @@ const styles = StyleSheet.create({
     quien: {
         color: "#40194f",
     fontWeight: "bold",
-    },
-    
+    },  
 })
 
 export default Comments;

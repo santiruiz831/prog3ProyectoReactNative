@@ -15,17 +15,13 @@ class Card extends Component{
        
     }
 
-
     render(){
         return(
                 <View>
                     <Text>{this.props.data.posteo}</Text>
-                
                 </View>
         )
     }
-
 }
-
 
 export default Card;

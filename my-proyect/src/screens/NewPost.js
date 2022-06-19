@@ -10,7 +10,6 @@ import {
 import {auth, db} from '../firebase/config';
 import MyCamera from '../components/MyCamera';
 
-
 class NewPost extends Component{
     constructor(props){
         super(props)
@@ -44,14 +43,13 @@ class NewPost extends Component{
     
     onImageUpload (url){
         this.setState({
-            url: url,  //le pasamos al estado lo que viene por paramewtros
+            url: url, 
             showCamera: false,
         })
     }
 
     render(){
         return(
-          
                 <View style={styles.container}> 
                     {
                     this.state.showCamera ?
@@ -72,9 +70,7 @@ class NewPost extends Component{
                             </TouchableOpacity>
                         </View>
                     }
-                </View>
-           
-            
+                </View> 
         )   
     }
 }
@@ -87,7 +83,6 @@ const styles = StyleSheet.create({
         height: '99%',
         backgroundColor: "#fdf7ff",
     },
-    
     button: {
         color: "white",
         backgroundColor: "#40194f",
@@ -100,7 +95,6 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 7,
         margin: 10,
-      
     },
     buttonText:{
         backgroungColor: '#40194f',
@@ -109,7 +103,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         color: "white"
     },
- 
     field: {
         color: "white",
         flex: 1,
@@ -119,8 +112,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         borderRadius: 15,
         backgroundColor: "rgba(0, 0, 0, 0.247)",
-    },
-    
+    }, 
 });
 
 export default NewPost;

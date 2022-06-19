@@ -4,14 +4,11 @@ import {
     View,
     Text,
     TextInput,
-    TouchableOpacity,
     StyleSheet,
     ActivityIndicator,
     FlatList,
-    Image
 } from 'react-native';
 import Post from './Post';
-import { FontAwesome } from '@expo/vector-icons'; 
 
 class Search extends Component {
     constructor(props) {
@@ -26,7 +23,6 @@ class Search extends Component {
         }
     }
 
-    // Obtener información a partir de una búsqueda.
     componentDidMount() {
         db.collection('posts').orderBy("createdAt", "desc").onSnapshot(
             (docs) => {
@@ -37,17 +33,12 @@ class Search extends Component {
                         data: oneDoc.data()
                     })
                 })
-
                 this.setState({
                     posts: posts,
-           
-           
                 })
             }
         );
-        db.collection("users")
-            
-            .onSnapshot(
+        db.collection("users").onSnapshot(
                 (docs) => {
                     let postsAux = [];
                     docs.forEach((doc) => {
@@ -55,7 +46,7 @@ class Search extends Component {
                             id: doc.id,
                             data: doc.data(),
                         });
-                    }); // For each
+                    }); 
                     console.log(postsAux)
                     this.setState({
                         users: postsAux,
@@ -64,15 +55,23 @@ class Search extends Component {
                     ;
                 }
             );
-
-
     }
-
 
     render() {
         
-        
-        
+        let filterPosts =
+            this.state.searchInput.length > 0 ? this.state.posts.filter((element) =>
+                element.data.owner
+                    .toLowerCase()
+                    .includes(this.state.searchInput.toLowerCase())
+            ) : this.state.posts;
+        let filteredUsers =
+            this.state.searchInput.length > 0 ? this.state.users.filter((element) =>
+                element.data.email
+                    .toLowerCase()
+                    .includes(this.state.searchInput.toLowerCase())
+            ) : this.state.users;
+
         return (
             <>
             <View style={styles.container}>
@@ -80,7 +79,6 @@ class Search extends Component {
                     <ActivityIndicator size="large" color="blue" /> 
                 ) : (
                     <>
-              
                         <TextInput
                             style={styles.field}
                             keyboardType='default'
@@ -89,7 +87,6 @@ class Search extends Component {
                             onChangeText={(text) => this.setState({ searchInput: text })}
                         />
                         
-              
                 {filteredUsers.length > 0 ? (
                     filterPosts.length > 0 ? (
                     <FlatList
@@ -99,20 +96,18 @@ class Search extends Component {
                     keyExtractor={(post) => post.id.toString()}
                     renderItem={({ item }) => <Post dataPost={item}></Post>}
                     />
+
                 ) : (
                     <Text  style={styles.texto}>Lo siento, este usuario aun no hizo un posteo</Text>
-
                 )
                 ) : (
                     <Text  style={styles.texto}>Ese usuario no existe. Por favor, prueba con otro.</Text>
-
                 )
                 }
                 </>
-            )}
-                
+            )} 
             </View>
-</>
+        </>
         );
     }
 }

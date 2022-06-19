@@ -56,10 +56,8 @@ class Register extends Component {
                 </TouchableOpacity>
 
             </View>
-
         )
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -125,9 +123,7 @@ const styles = StyleSheet.create({
         width: '100%',
         textAlign: "center",
         marginTop: 8,
-
     },
-      
 })
 
 export default Register;

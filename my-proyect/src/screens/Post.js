@@ -18,7 +18,6 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //cantidadDeLikes:this.props.dataPost.data.likes.length,
       cantidadDeLikes: 0,
       myLike: false,
       showCamera: true,
@@ -45,7 +44,6 @@ class Post extends Component {
   }
 
   like() {
-    //Agregar el email del user logueado en el array
     db.collection("posts")
       .doc(this.props.dataPost.id)
       .update({
@@ -61,7 +59,6 @@ class Post extends Component {
   }
 
   unLike() {
-    //Agregar el email del user logueado en el array
     db.collection("posts")
       .doc(this.props.dataPost.id)
       .update({
@@ -77,6 +74,7 @@ class Post extends Component {
       )
       .catch((error) => console.log(error));
   }
+
   showModal() {
     this.setState({
       showModal: true,
@@ -161,8 +159,6 @@ class Post extends Component {
         </View>
         
 
-
-
         <TouchableOpacity
          style={styles.commentar}
           onPress={() =>
@@ -173,6 +169,7 @@ class Post extends Component {
         >
           <Fontisto name="commenting" size={20} color="#40194f" />
         </TouchableOpacity>
+
       </View>
     );
   }
@@ -223,14 +220,13 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 15,
     shadowColor: "#263238",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
     shadowOpacity: 0.5,
     shadowRadius: 3.84,
     elevation: 5,
     backgroundColor: "#263238",
+    shadowOffset: {
+      width: 0,
+      height: 2, },
   },
   text: {
     color: "white",

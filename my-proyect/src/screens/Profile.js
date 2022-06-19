@@ -4,9 +4,7 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Modal,
     FlatList,
-    ActivityIndicator,
 } from 'react-native';
 import Post from "./Post"
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -24,11 +22,9 @@ class Profile extends Component {
         }
     }
 
-
     componentDidMount() {
         db.collection("posts")
             .where("owner", "==", auth.currentUser.email)
-            // .orderBy("createdAt", "desc")
             .onSnapshot(
                 (docs) => {
                     let postsAux = [];
@@ -37,7 +33,7 @@ class Profile extends Component {
                             id: doc.id,
                             data: doc.data(),
                         });
-                    }); // For each
+                    }); 
                     this.setState({
                         posts: postsAux,
                         loader: false,
@@ -47,7 +43,6 @@ class Profile extends Component {
             )
         db.collection("users")
             .where("email", "==", auth.currentUser.email)
-            // .orderBy("createdAt", "desc")
             .onSnapshot(
                 (docs) => {
                     let postsAux = [];
@@ -56,7 +51,7 @@ class Profile extends Component {
                             id: doc.id,
                             data: doc.data(),
                         });
-                    }); // For each
+                    }); 
                     console.log(postsAux)
                     this.setState({
                         username: postsAux[0].data.userName,
@@ -67,13 +62,12 @@ class Profile extends Component {
             );
     }
 
-
     render() {
         console.log(this.state.username)
         return (
             <View style={styles.background}>
                 <View style={styles.contFlat}>
-                    <Text style={styles.titulo}> Mi Perfil</Text>
+                    <Text style={styles.titulo}> Mi Perfil </Text>
 
                     <Text style={styles.username}>
                         {this.state.username}
@@ -122,7 +116,6 @@ class Profile extends Component {
                             color="white"
                         />
                     </TouchableOpacity>
-
                 </View>
             </View>
         );
@@ -138,7 +131,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#fdf7ff",
         color: "#fdf7ff",
     },
-
     noFlatlist: {
         width: "100%",
         flex: 9,
@@ -146,14 +138,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-
     flatlist: {
         overflow: "hidden",
         width: "100%",
         flex: 9,
         flexDirection: "column",
     },
-
     icon: {
         backgroundColor: "#40194f",
         color: "white",
@@ -163,27 +153,21 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         width: "100%",
     },
-
     titulo: {
         color: "#40194f",
         textAlign: 'center',
         fontSize: 40,
         fontWeight: '600',
         backgroundColor: '#cbb9d2',
-
     },
-
     contFlat: {
         flex: 1,
-        
     },
-
     background: {
         backgroundColor: "#fdf7ff",
         flex: 9,
         flexDirection: "column",
     },
-
     username: {
         textAlign: "left",
         color: "cbb92d",
@@ -191,12 +175,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         padding: 5,
     },
-
     boldText: {
         fontSize: "30",
         fontWeight: "bold",
         color: "#40194f",
-
     },
     paddingLeft: {
         paddingLeft: "5px",
@@ -206,7 +188,5 @@ const styles = StyleSheet.create({
     },
 
 });
-
-
 
 export default Profile;
