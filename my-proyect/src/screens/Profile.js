@@ -186,7 +186,6 @@ const styles = StyleSheet.create({
     text: {
         padding: 5,
     },
-
 });
 
 export default Profile;

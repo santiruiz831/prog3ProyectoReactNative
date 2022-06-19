@@ -56,7 +56,7 @@ class Search extends Component {
                 }
             );
     }
-
+    
     render() {
         
         let filterPosts =
@@ -96,7 +96,6 @@ class Search extends Component {
                     keyExtractor={(post) => post.id.toString()}
                     renderItem={({ item }) => <Post dataPost={item}></Post>}
                     />
-
                 ) : (
                     <Text  style={styles.texto}>Lo siento, este usuario aun no hizo un posteo</Text>
                 )

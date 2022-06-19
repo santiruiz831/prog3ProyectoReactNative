@@ -169,7 +169,6 @@ class Post extends Component {
         >
           <Fontisto name="commenting" size={20} color="#40194f" />
         </TouchableOpacity>
-
       </View>
     );
   }

@@ -22,7 +22,6 @@ class Menu extends Component {
             <Tab.Navigator>
                 <Tab.Screen 
                     name='Home' 
-                    
                     options={
                         { tabBarIcon: () => <FontAwesome name="home" size={24} color="black" /> }
                     }
@@ -40,8 +39,7 @@ class Menu extends Component {
                     component={ NewPost }
                     options={
                         { tabBarIcon: () => <FontAwesome name="photo" size={24} color="black" /> }
-                    }
-                    
+                    }  
                 />
                 <Tab.Screen
                     name='Search'

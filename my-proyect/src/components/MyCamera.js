@@ -75,7 +75,6 @@ class MyCamera extends Component {
                 <View style={styles.cameraBody}>
                     {this.state.permission ? 
                         this.state.showCamera ?
-
                             <View style={styles.cameraBody} > 
                                 <Camera
                                     style={styles.cameraBody}
