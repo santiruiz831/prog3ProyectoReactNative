@@ -51,7 +51,6 @@ class Menu extends Component {
                     }
                 />       
             </Tab.Navigator>        
-
         )
     }
 }

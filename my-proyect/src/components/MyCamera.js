@@ -80,7 +80,7 @@ class MyCamera extends Component {
                                 <Camera
                                     style={styles.cameraBody}
                                     type= {Camera.Constants.Type.front}
-                                    ref=  {metodosDeCamara => this.metodosDeCamara = metodosDeCamara}   //pasarle a la clase los metodos de la camara
+                                    ref=  {metodosDeCamara => this.metodosDeCamara = metodosDeCamara} 
                                 />
                                 <TouchableOpacity 
                                     style={styles.button}
@@ -118,7 +118,6 @@ class MyCamera extends Component {
                 </View>
         )
     }
-
 }
 
 const styles = StyleSheet.create ({
