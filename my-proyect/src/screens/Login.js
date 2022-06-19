@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
       padding: 7,
       marginTop: 5,
       borderRadius: 15,
-
+      height: 50
     },
     botton:{
       backgroundColor: "#91D6B4",
@@ -98,12 +98,13 @@ const styles = StyleSheet.create({
       borderStyle: 'solid',
       borderColor: "#91D6B4",
       padding: 7,
-      marginTop: 15,
-      borderRadius: 15,
+      marginTop: 30,
       width: '100%',
+      
     },
     text:{
-      color: "#40194f"
+      color: "#40194f",
+      textAlign: "center",
     }    ,
     error: {
       textAlign: "left",
@@ -111,6 +112,7 @@ const styles = StyleSheet.create({
       fontWeight: "600",
       fontSize: 20,
       padding: 5,
+      marginTop: 50,
     },
     cambiar: {
       backgroundColor: '#cbb9d2',
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
       color: "white",
       textAlign: "center",
       padding: 7,
-      marginTop: 5,
+      marginTop: 280,
       borderRadius: 15,
       width: "100%",
     },
