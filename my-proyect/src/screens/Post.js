@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { auth, db } from "../firebase/config";
 import firebase from "firebase";
-import Comments from "./Comments";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Fontisto } from '@expo/vector-icons'; 
 

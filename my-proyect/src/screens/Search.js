@@ -58,7 +58,6 @@ class Search extends Component {
     }
     
     render() {
-        
         let filterPosts =
             this.state.searchInput.length > 0 ? this.state.posts.filter((element) =>
                 element.data.owner

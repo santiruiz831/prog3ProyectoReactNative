@@ -36,7 +36,7 @@ class Comments extends Component{
         } else {
         //actualizar una colleción.
         db.collection('posts')
-        .doc(this.props.route.params.post.id) //Cual es el posteo en donde voy a poner un nuevo comentario. Puedo usar route?
+        .doc(this.props.route.params.post.id)
         .update({
             comments:firebase.firestore.FieldValue.arrayUnion({
                 owner: auth.currentUser.email,
