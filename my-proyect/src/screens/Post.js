@@ -158,7 +158,7 @@ class Post extends Component {
         <Text style={styles.numer}>{this.props.dataPost.data.description}</Text>
         </View>
         
-
+        <View style={styles.conten}>
         <TouchableOpacity
          style={styles.commentar}
           onPress={() =>
@@ -169,6 +169,8 @@ class Post extends Component {
         >
           <Fontisto name="commenting" size={20} color="#40194f" />
         </TouchableOpacity>
+        <Text style={styles.comen}>{this.state.filteredComments.length}</Text>
+        </View>
       </View>
     );
   }
@@ -184,6 +186,14 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     marginLeft: 50,
     marginRight: 50,
+  },
+  comen: {
+    color: 'white', 
+    marginLeft: 10, 
+    marginTop: 10,
+  },
+  conten: {
+    flexDirection: 'row',
   },
   imagen: {
     width: "100%",
