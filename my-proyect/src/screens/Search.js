@@ -16,7 +16,6 @@ class Search extends Component {
         this.state = {
             posts: [],
             email: '',
-            whoIs: '',
             users: [],
             searchInput: "",
             loader: true,
